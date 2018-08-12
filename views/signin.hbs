@@ -2,28 +2,31 @@
 <html lang="en">
 
 <head>
-	<title> BaechDay | SIGN UP :: w3layouts</title>
+	<title>BaechDay | SIGN IN </title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<!-- bootstrap-CSS -->
 	<link rel="stylesheet" href="css/bootstrap-select.css">
 	<!-- bootstrap-select-CSS -->
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-	<link rel="stylesheet" href="css/font-awesome.min.css" />
-
 	<!-- style.css -->
-
+	<link rel="stylesheet" href="css/font-awesome.min.css" />
+	<!-- fontawesome-CSS -->
+	{{!-- <link rel="stylesheet" href="css/menu_sideslide.css" type="text/css" media="all"> --}}
 	<!-- Navigation-CSS -->
 	<!-- meta tags -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<!-- <meta name="keywords" content="Resale Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+	{{!-- <meta name="keywords" content="Resale Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
-	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-
+	<!-- js -->
 	<script type="text/javascript" src="js/jquery.min.js"></script>
-
+	<!-- js -->
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="js/bootstrap.js"></script>
-	<script src="js/bootstrap-select.js"></script> -->
+	<script src="js/bootstrap-select.js"></script> --}}
+
+
+
 
 
 </head>
@@ -60,23 +63,49 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</header>
 	<!-- //header -->
-
-	<!-- //header -->
-	<!-- sign up form -->
+	<!-- sign in form -->
 	<section>
 		<div id="agileits-sign-in-page" class="sign-in-wrapper">
 			<div class="agileinfo_signin">
-				<h3>Sign Up</h3>
-				<form action="JavaScript:void(0)" onsubmit="signup()" id="form1">
-					<input type="text" required="required" id="name" name="Name" placeholder="Your Name" autofocus="autofocus" >
-					<input type="email" required="required" id="email" name="Email" placeholder="Your Email" >
-					<input type="password" id="password" name="Password" placeholder="Password" required="required">
-					<input type="submit" value="Sign Up">
+				<h3>Sign In</h3>
+				<form action="JavaScript:void(0)" onsubmit="signUser()" id="form1">
+					<input id="email" type="text" name="email" placeholder="Your Email" required="">
+					<input id="password" type="password" name="password" placeholder="Password" required="">
+					<input type="submit" value="Sign In">
+					<!-- <div class="forgot-grid">
+					<label class="checkbox"><input type="checkbox" name="checkbox">Remember me</label>
+					<div class="forgot">
+						<a href="#" data-toggle="modal" data-target="#myModal2">Forgot Password?</a>
+					</div> -->
+					<!-- Modal -->
+					<!-- <div class="modal fade" id="myModal2" role="dialog">
+						<div class="modal-dialog"> -->
+					<!-- Modal content-->
+					<!-- <div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h3 class="w3ls-password">Get Password</h3>		
+									<p class="get-pw">Enter your email address below and we'll send you an email with instructions.</p>
+									<form action="#" method="post">
+										<input type="text" class="user" name="email" placeholder="Email" required="">
+										<input type="submit" value="Submit">
+									</form>
+								</div>
+							</div>
+						</div>
+						</div>
+					</div>
+					<div class="clearfix"> </div>
+				</div> -->
 				</form>
+				<h6> Not a Member Yet?
+					<a href="signup.html">Sign Up Now</a>
+				</h6>
 			</div>
 		</div>
 	</section>
-	<!-- //sign up form -->
+	<!-- //sign in form -->
 	<!--footer section start-->
 	<footer>
 		<div class="w3-agileits-footer-top">
@@ -163,13 +192,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</footer>
 	<!--footer section end-->
-	<script src="javascript/signup.js"></script>
+	<script src="javascript/signin.js"></script>
 </body>
-<!-- Navigation-JavaScript -->
-
-<!-- start-smoth-scrolling -->
-
-<!-- start-smoth-scrolling -->
-<!-- //here ends scrolling icon -->
 
 </html>

@@ -4,7 +4,6 @@ const express = require('express');
 const _ = require('lodash');
 const { SHA256 } = require('crypto-js');
 const { ObjectID } = require('mongodb');
-// const bcrypt = require('bcryptjs');
 const bodyParser = require('body-parser');
 var { mongoose } = require('./db/mongoose');
 var { Todo } = require('./db/models/Todo');
@@ -30,8 +29,8 @@ var io = socketIO(server);
 app.use(express.static(publicPath));
 app.set("view engine", "hbs");
 
-const tokenPass = process.env.tokenPass|| 'abc123';
-const hashPass = process.env.hashPass|| '@#someword';
+const tokenPass = process.env.tokenPass || 'abc123';
+const hashPass = process.env.hashPass || '@#someword';
 
 /**Middleware And Some Config END */
 
@@ -41,11 +40,11 @@ app.get('/', (req, res) => {
     res.send('home page')
 });
 //SIGNUP PAGE + MONGODB
-app.get('/signup',(req,res) =>{
+app.get('/signup', (req, res) => {
     res.render('signup.hbs')
 });
 app.post('/users', (req, res) => {
-    var body = _.pick(req.body, ['email', 'password','name']);
+    var body = _.pick(req.body, ['email', 'password', 'name']);
     var user = new Users(body);
     console.log('im here')
     body.password = SHA256(JSON.stringify(body.password) + hashPass).toString();
@@ -67,7 +66,7 @@ app.post('/users', (req, res) => {
             if (!result) {
                 return res.status(404).send();
             }
-            var dataToSend = _.pick(result, ['email', '_id','name']);
+            var dataToSend = _.pick(result, ['email', '_id', 'name']);
             res.header('x-auth', token).send(dataToSend);
         }, err => {
             res.status(404).send();
@@ -78,11 +77,49 @@ app.post('/users', (req, res) => {
 });
 //SIGNUP PAGE + MONGODB END
 
+//SIGN IN PAGE + MONGODB
+app.get('/signin', (req, res) => {
+    res.render('signin.hbs')
+});
+app.post('/users/login', (req, res) => {
+    var body = _.pick(req.body, ['email', 'password']);
+    console.log(body);
+    Users.findOne({ email: body.email }).then(result => {
+        if (!result) {
+            return res.status(401).send();
+        }
+        var reqPass = SHA256(JSON.stringify(body.password) + hashPass).toString();
+        var userPass = result.password;
+        if (reqPass !== userPass) {
+            console.log("Something is Wrong");
+            return res.status(401).send();
+        }
+        var access = 'auth';
+        var token = jwt.sign({ _id: result._id.toHexString(), access }, tokenPass).toString();
+        body = result
+        body.tokens.push({ access, token });
+
+        // updating user body
+        Users.findByIdAndUpdate(body._id, { $set: body }, { new: true }).then((result) => {
+            if (!result) {
+                return res.status(404).send();
+            }
+            res.header('x-auth', token).send(result);
+        }, err => {
+            res.status(404).send();
+        });
+    }).catch(err => {
+        res.status(401).send(err);
+
+    });
+});
+//SIGN IN PAGE + MONGODB END
 
 
 
 
-app.listen(port,()=>{
+
+server.listen(port, () => {
     console.log(`App Running On Port ${port}`);
 });
 /**All The Routes And Setting END */

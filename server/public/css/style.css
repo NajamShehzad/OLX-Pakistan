@@ -1037,7 +1037,6 @@ i.real-estate {
 /*-- //focus --*/
 /*-- sign-in --*/
 .sign-in-wrapper{
-	background: url(../images/account-bg.jpg) no-repeat 0px 0px;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;

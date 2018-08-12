@@ -3,7 +3,6 @@ function signup() {
     var name = document.getElementById("name").value;
     var password = document.getElementById("password").value;
     var email = document.getElementById("email").value;
-    var number = document.getElementById("number").value;
     // var form = new FormData(document.querySelector('#form1'));
     fetch("http://localhost:8000/users",
         {
@@ -17,11 +16,14 @@ function signup() {
         .then(function (res) {
             localStorage.setItem('token', res.headers.get('x-auth'));
             return res.json()
-        }).then(x => {
-            if(x.code == 11000){
-                    alert('Email Already in Record')
+        }).then(user => {
+            if(user.code == 11000){
+                return    alert('Email Already in Record')
+            }else{
+                document.getElementById('form1').reset();
+                console.log(user);
+                localStorage.setItem('userInfo',JSON.stringify(user))
             }
-            console.log(x)
         })
         .catch(function (err) { console.log('err', err) })
     return false;
