@@ -6,7 +6,7 @@ const { SHA256 } = require('crypto-js');
 const { ObjectID } = require('mongodb');
 const bodyParser = require('body-parser');
 var { mongoose } = require('./db/mongoose');
-var { Todo } = require('./db/models/Todo');
+var { Ads } = require('./db/models/Ads');
 const jwt = require('jsonwebtoken');
 var { Users } = require('./db/models/User');
 var { authenticate } = require('./middleware/authenticate');
@@ -115,7 +115,26 @@ app.post('/users/login', (req, res) => {
 });
 //SIGN IN PAGE + MONGODB END
 
+//Add Post PAGE + MONGODB
+app.get('/postAd',(req,res) =>{
+    res.render('post-add.hbs')
+});
+app.post('/postAd',authenticate,(req, res) => {
+    var body = req.body;
+    // console.log(body);
 
+    var ad = new Ads(body);
+    ad.save().then(doc => {
+        console.log("Sucessfull :", doc);
+        res.send(doc)
+    }, err => {
+        console.log("Something Went Wrong :", err);
+        res.status(400).send(err);
+
+    });
+});
+
+//Add Post PAGE + MONGODB END
 
 
 

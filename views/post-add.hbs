@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> BaechDay | Post Ad </title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- bootstrap-CSS -->
+    {{!--
+    <link rel="stylesheet" href="css/bootstrap-select.css"> --}}
+    <!-- bootstrap-select-CSS -->
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- style.css -->
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <!-- fontawesome-CSS -->
+    {{!--
+    <link rel="stylesheet" href="css/menu_sideslide.css" type="text/css" media="all"> --}}
+    <!-- Navigation-CSS -->
+    <!-- meta tags -->
+    {{!--
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <script type="text/javascript" src="js/jquery.min.js"></script> --}}
+    <!-- js -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- <script src="js/bootstrap.js"></script> -->
+    <!-- <script src="js/bootstrap-select.js"></script> -->
+    <!-- language-select -->
+    <style>
+        #favbtn {
+            padding: 3px 6px;
+            background-color: #15c01c;
+        }
+
+        @media only screen and (max-width: 600px) {
+            #favbtn {
+                display: none;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Navigation -->
+    <!-- Navigation -->
+    <!-- <div class="agiletopbar">
+		<div class="wthreenavigation">
+			<div class="menu-wrap">
+				<nav class="menu">
+					<div class="icon-list">
+						<a href="mobiles.html">
+							<i class="fa fa-fw fa-mobile"></i>
+							<span>Mobiles</span>
+						</a>
+						<a href="electronics-appliances.html">
+							<i class="fa fa-fw fa-laptop"></i>
+							<span>Electronics and appliances</span>
+						</a>
+						<a href="cars.html">
+							<i class="fa fa-fw fa-car"></i>
+							<span>Vehicles</span>
+						</a>
+						<a href="real-estate.html">
+							<i class="fa fa-fw fa-home"></i>
+							<span>Real Estate</span>
+						</a>
+					</div>
+				</nav>
+				<button class="close-button" id="close-button">Close Menu</button>
+			</div>
+			<button class="menu-button" id="open-button"> </button>
+		</div>
+		<div class="clearfix"></div>
+	</div> -->
+    <!-- //Navigation -->
+    <!-- header -->
+    <header>
+        <div class="w3ls-header">
+            <button style="float: left;" onclick="location.href='fav.html'" id="favbtn">Favorite</button>
+            <!--header-one-->
+            <div class="w3ls-header-right">
+                <ul>
+                    <li class="dropdown head-dpdn" id="loginIcon">
+                        <a href="signin.html" aria-expanded="false">
+                            <i class="fa fa-user" aria-hidden="true"></i> Sign In</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="clearfix"> </div>
+        </div>
+        <div class="container">
+            <div class="agile-its-header">
+                <div class="logo">
+                    <h1>
+                        <a href="index.html">
+                            <span>Baech</span>Day</a>
+                    </h1>
+                </div>
+                <a class="post-w3layouts-ad" href="post-ad.html">Post Free Ad</a>
+            </div>
+        </div>
+    </header>
+    <!-- //header -->
+
+    <!-- //header -->
+    <!-- sign up form -->
+    <div class="submit-ad main-grid-border">
+        <div class="container">
+            <h2 class="w3-head">Post an Ad</h2>
+            <div class="post-ad-form">
+                <form action="JavaSCript:void(0)" onsubmit="postadd()" id="form123">
+                    <label>Select Category
+                        <span>*</span>
+                    </label>
+                    <select class="" id="selectbox">
+                        <option>Select Category</option>
+                        <option value="mobile" selected>Mobiles</option>
+                        <option value="appliances">Electronics and Appliances</option>
+                        <option value="vehicles">Vehicles</option>
+                        <!-- <option>Bikes</option>
+					  <option>Furniture</option>
+					  <option>Pets</option>
+					  <option>Books, Sports and hobbies</option>
+					  <option>Fashion</option>
+					  <option>Kids</option>
+					  <option>Services</option> -->
+                        <option value="property">Real, Estate</option>
+                    </select>
+
+                    <div class="clearfix"></div>
+
+                    <label>Ad Title
+                        <span>*</span>
+                    </label>
+                    <input id="title" type="text" class="phone" placeholder="" required="required" >
+                    <div class="clearfix"></div>
+                    <label>Model
+                        <span>*</span>
+                    </label>
+                    <input id="year" type="text" class="phone" placeholder="" required="required">
+                    <div class="clearfix"></div>
+                    <label>Price
+                        <span>*</span>
+                    </label>
+                    <input id="price" style="width: 25%;" type="text" class="phone" placeholder="" required="required">
+                    <div class="clearfix"></div>
+                    <label>Mobile Number
+                        <span>*</span>
+                    </label>
+                    <input id="mobile" style="width: 25%;" type="text" class="phone" placeholder="" required="required">
+                    <div class="clearfix"></div>
+                    <label>Ad Description
+                        <span>*</span>
+                    </label>
+                    <textarea id="desc" class="mess" placeholder="Write few lines about your product" required="required"></textarea>
+                    <div class="clearfix"></div>
+                    <div align="center" id="picturediv">
+                        <img width="25%" height="25%" id="picture">
+                        <img width="25%" height="25%" id="picture1">
+                    </div>
+                    <div class="clearfix"></div>
+                    <label>Photos for your ad :</label>
+                    <div style="margin-top: 1%">
+                        <input type="file" accept="image/*" id="upload" onchange="divpic()" />
+                        <input type="submit" style="float: none; border-radius: 0%;margin-top: 3%" value="Post">
+
+                    </div>
+
+
+
+
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- //sign up form -->
+    <!--footer section start-->
+    <footer>
+        <div class="w3-agileits-footer-top">
+            <div class="container">
+                <div class="wthree-foo-grids">
+                    <div class="col-md-9 wthree-footer-grid">
+                        <h4 class="footer-head">About Us</h4>
+                        <p style="text-align:justify;">
+                            BaechDay.pk is a free local classifieds site. Sell anything from used cars to mobiles, furniture, laptops, clothing and more.
+                            Submit ads for free. If you want to buy something - here you will find interesting items, cheaper
+                            than in the store. Start buying and selling in the most easy way on BaechDay.pk.
+                        </p>
+                    </div>
+                    <div class="col-md-3 wthree-footer-grid right">
+                        <h4 class="footer-head">Contact Us</h4>
+                        <span class="hq">Our headquarters</span>
+                        <address>
+                            <ul class="location">
+                                <li>
+                                    <span class="glyphicon glyphicon-map-marker"></span>
+                                </li>
+                                <li>I.T Planet Head Office,Tariq Road Karachi. </li>
+                            </ul>
+                            <div class="clearfix"> </div>
+                            <ul class="location">
+                                <li>
+                                    <span class="glyphicon glyphicon-earphone"></span>
+                                </li>
+                                <li>+92-2136548</li>
+                            </ul>
+                            <div class="clearfix"> </div>
+                            <ul class="location">
+                                <li>
+                                    <span class="glyphicon glyphicon-envelope"></span>
+                                </li>
+                                <li>
+                                    <a href="info@itplanet.com">mail@itplanet.com</a>
+                                </li>
+                            </ul>
+                        </address>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="agileits-footer-bottom text-center">
+            <div class="container">
+                <div class="w3-footer-logo">
+                    <h1>
+                        <a href="index.html">
+                            <span>Baech</span>Day</a>
+                    </h1>
+                </div>
+                <div class="w3-footer-social-icons">
+                    <ul>
+                        <li>
+                            <a class="facebook" href="https://www.facebook.com/najamshehzadbutt" target="_blank">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                                <span>Facebook</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="twitter" href="https://twitter.com/NajamShehzad_B" target="_blank">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                                <span>Twitter</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="googleplus" href="https://plus.google.com/u/0/115993998049444930711" target="_blank">
+                                <i class="fa fa-google-plus" aria-hidden="true"></i>
+                                <span>Google+</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="copyrights">
+                    <p> © 2018 BachDay. All Rights Reserved | Design by
+                        <a href="https://www.facebook.com/najamshehzadbutt" target="_blank"> Najam Butt</a>
+                    </p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </footer>
+    <!--footer section end-->
+    <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
+    <script src="javascript/firebase-config.js">
+    </script>
+    <script src="javascript/postadd.js"></script>
+    <script src="javascript/logcon.js"></script>
+</body>
+<!-- Navigation-JavaScript -->
+{{!--
+<script src="js/classie.js"></script> --}}
+<!-- <script src="js/main.js"></script> -->
+<!-- start-smoth-scrolling -->
+<!-- <script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script> -->
+<!-- start-smoth-scrolling -->
+<!-- //here ends scrolling icon -->
+
+</html>
