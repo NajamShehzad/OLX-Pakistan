@@ -127,8 +127,4 @@ function postadd() {
             // Use to signal error if something goes wrong.
             console.log(`Failed to upload file and get link - ${error}`);
         });
-
-
-
-
 }

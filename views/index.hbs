@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title> BaechDay| HOME </title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- bootstrap-CSS -->
+	{{!-- <link rel="stylesheet" href="css/bootstrap-select.css"> --}}
+	<link rel="icon" type="image/gif" href="icon.png" />
+	<!-- bootstrap-select-CSS -->
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" href="css/font-awesome.min.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="cahtbtn.css" type="text/css" media="all">
+	{{!-- <link rel="manifest" href="manifest.json"> --}}
+	<style>
+		@media only screen and (max-width: 600px) {
+			#favbtn {
+				display: none;
+			}
+			#livechat-compact1 {
+				display: block;
+			}
+		}
+
+		@media only screen and (max-width: 600px) {
+			.banner {
+				height: 50%;
+			}
+		}
+	</style>
+</head>
+
+<body>
+
+	<!-- Live Chat And Your Ads Button -->
+	<div class="btn-chat" id="livechat-compact-container" style="visibility: visible; opacity: 1;">
+		<div class="btn-holder">
+			<a onclick="parent.LC_API.open_chat_window();return false;" href="chatpage.html" class="link">Live Chat</a>
+		</div>
+	</div>
+	<div class="btn-chat" id="livechat-compact" style="visibility: visible; opacity: 1;">
+		<div class="btn-holder">
+			<a onclick="parent.LC_API.open_chat_window();return false;" href="myads.html" class="link"> Your Ads</a>
+		</div>
+	</div>
+	<div class="btn-chat" id="livechat-compact1" style="visibility: visible; opacity: 1;">
+		<div class="btn-holder">
+			<a onclick="parent.LC_API.open_chat_window();return false;" href="fav.html" class="link">Favorites</a>
+		</div>
+	</div>
+
+	<!-- /Live Chat And Your Ads Button -->
+
+
+	<!-- <div style="position: fixed;bottom: 0;width: 100%; right: 0; z-index: 1111;" class="col-md-9">
+		Hellow Jee kiya haal hae
+	</div> -->
+	<!-- Navigation -->
+
+
+
+	<div class="clearfix"></div>
+
+	<!-- //Navigation -->
+	<!-- header -->
+	<header>
+		<div class="w3ls-header">
+			<button style="float: left;" class="btn btn-success" onclick="location.href='fav.html'" id="favbtn">Favorite</button>
+			<!--header-one-->
+			<div class="w3ls-header-right">
+				<ul>
+					<li class="dropdown head-dpdn" id="loginIcon">
+						<a href="signin.html" aria-expanded="false">
+							<i class="fa fa-user" aria-hidden="true"></i> Sign In</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="clearfix"> </div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="logo col-md-3 ">
+					<h1>
+						<a href="index.html">
+							<span>Baech</span>Day</a>
+					</h1>
+				</div>
+				<div class="col-md-9 con" style="margin-top: 1.5%;padding:0px;">
+					<input type="search" class="form-control" placeholder="Search Here...." name="searchBox" id="searchBox">
+					<select class="" id="selectbox">
+						<option selected value='all'>All</option>
+						<option value="mobile">Mobiles</option>
+						<option value="appliances">Electronics and Appliances</option>
+						<option value="vehicles">Vehicles</option>
+						<option value="property">Real, Estate</option>
+					</select>
+					<input post-w3layouts-ad type="button" onclick="searchAdd()" class="btn btn-secondary " id="searchHere" value="Search Ad">
+					<a class="btn btn-info" id="addpostbtn" href="post-ad.html">Post Free Ad</a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- //header -->
+	<!-- Slider -->
+	<div class="banCon">
+		<img src="1-min.jpg" class="banner" alt="">
+	</div>
+	<!-- //Slider -->
+	<!-- content-starts-here -->
+	<div class="main-content">
+		<div class="w3-categories">
+			<h3>Browse Categories</h3>
+			<div class="container">
+				<div class="col-md-3">
+					<div class="focus-grid w3layouts-boder1">
+						<a class="btn-8" href="mobile.html">
+							<div class="focus-border">
+								<div class="focus-layout">
+									<div class="focus-image">
+										<i class="fa fa-mobile"></i>
+									</div>
+									<h4 class="clrchg">Mobiles</h4>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="focus-grid w3layouts-boder2">
+						<a class="btn-8" href="appliances.html">
+							<div class="focus-border">
+								<div class="focus-layout">
+									<div class="focus-image">
+										<i class="fa fa-laptop"></i>
+									</div>
+									<h4 class="clrchg"> Electronics & Appliances</h4>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="focus-grid w3layouts-boder3">
+						<a class="btn-8" href="vehicles.html">
+							<div class="focus-border">
+								<div class="focus-layout">
+									<div class="focus-image">
+										<i class="fa fa-car"></i>
+									</div>
+									<h4 class="clrchg">Vehicles</h4>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="focus-grid w3layouts-boder12">
+						<a class="btn-8" href="property.html">
+							<div class="focus-border">
+								<div class="focus-layout">
+									<div class="focus-image">
+										<i class="fa fa-home"></i>
+									</div>
+									<h4 class="clrchg">Real Estate</h4>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<!-- most-popular-ads -->
+
+		<div class="container">
+			<h1>Mobiles</h1>
+			<div class="row" id="mobile">
+
+			</div>
+			<center>
+
+				<input style="margin-top: 40px" onclick="location.href='mobile.html'" align='center' class="btn btn-success" type="button"
+				 value="See More">
+			</center>
+
+		</div>
+		<div class="container">
+			<h1>Vehicles</h1>
+			<div class="row" id="car">
+
+			</div>
+			<center>
+
+				<input style="margin-top: 40px" onclick="location.href='vehicles.html'" align='center' class="btn btn-success" type="button"
+				 value="See More">
+			</center>
+
+		</div>
+		<div class="container">
+			<h1>Property</h1>
+			<div class="row" id="property">
+
+			</div>
+			<center>
+
+				<input style="margin-top: 40px" onclick="location.href='property.html'" align='center' class="btn btn-success" type="button"
+				 value="See More">
+			</center>
+
+		</div>
+		<div class="container">
+			<h1>Home Appliances</h1>
+			<div class="row" id="appliances">
+			</div>
+			<center>
+				<input style="margin-top: 40px" onclick="location.href='appliances.html'" align='center' class="btn btn-success" type="button"
+				 value="See More">
+			</center>
+
+		</div>
+
+
+		<div class="clearfix"></div>
+		<div class="clearfix"></div>
+		<!--footer section start-->
+		<footer>
+			<div class="w3-agileits-footer-top">
+				<div class="container">
+					<div class="wthree-foo-grids">
+						<div class="col-md-9 wthree-footer-grid">
+							<h4 class="footer-head">About Us</h4>
+							<p style="text-align:justify;">
+								BaechDay.pk is a free local classifieds site. Sell anything from used cars to mobiles, furniture, laptops, clothing and more.
+								Submit ads for free. If you want to buy something - here you will find interesting items, cheaper than in the store.
+								Start buying and selling in the most easy way on BaechDay.pk.
+							</p>
+						</div>
+						<div class="col-md-3 wthree-footer-grid right">
+							<h4 class="footer-head">Contact Us</h4>
+							<span class="hq">Our headquarters</span>
+							<address>
+								<ul class="location">
+									<li>
+										<span class="glyphicon glyphicon-map-marker"></span>
+									</li>
+									<li>I.T Planet Head Office,Tariq Road Karachi. </li>
+								</ul>
+								<div class="clearfix"> </div>
+								<ul class="location">
+									<li>
+										<span class="glyphicon glyphicon-earphone"></span>
+									</li>
+									<li>+92-2136548</li>
+								</ul>
+								<div class="clearfix"> </div>
+								<ul class="location">
+									<li>
+										<span class="glyphicon glyphicon-envelope"></span>
+									</li>
+									<li>
+										<a href="info@itplanet.com">mail@itplanet.com</a>
+									</li>
+								</ul>
+							</address>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+			<div class="agileits-footer-bottom text-center">
+				<div class="container">
+					<div class="w3-footer-logo">
+						<h1>
+							<a href="index.html">
+								<span>Baech</span>Day</a>
+						</h1>
+					</div>
+					<div class="w3-footer-social-icons">
+						<ul>
+							<li>
+								<a class="facebook" href="https://www.facebook.com/najamshehzadbutt" target="_blank">
+									<i class="fa fa-facebook" aria-hidden="true"></i>
+									<span>Facebook</span>
+								</a>
+							</li>
+							<li>
+								<a class="twitter" href="https://twitter.com/NajamShehzad_B" target="_blank">
+									<i class="fa fa-twitter" aria-hidden="true"></i>
+									<span>Twitter</span>
+								</a>
+							</li>
+
+							<li>
+								<a class="googleplus" href="https://plus.google.com/u/0/115993998049444930711" target="_blank">
+									<i class="fa fa-google-plus" aria-hidden="true"></i>
+									<span>Google+</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="copyrights">
+						<p> © 2018 BachDay. All Rights Reserved | Design by
+							<a href="https://www.facebook.com/najamshehzadbutt" target="_blank"> Najam Butt</a>
+						</p>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</footer>
+		<!--footer section end-->
+		<!-- Navigation-Js-->
+		<!-- <script type="text/javascript" src="js/main.js"></script>
+		<script type="text/javascript" src="js/classie.js"></script> -->
+		<!-- //Navigation-Js-->
+		<!-- js -->
+		{{!-- <script type="text/javascript" src="js/jquery.min.js"></script> --}}
+		<!-- js -->
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		{{!-- <script src="js/bootstrap.js"></script>
+		<script src="js/bootstrap-select.js"></script> --}}
+		<!-- <script src="js/responsiveslides.min.js"></script> -->
+		<!-- <script>
+			$(function () {
+				$("#slider").responsiveSlides({
+					auto: true,
+					pager: false,
+					nav: true,
+					speed: 500,
+					maxwidth: 800,
+					namespace: "large-btns"
+				});
+
+			});
+		</script> -->
+		<script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
+		<script src="javascript/firebase-config.js"></script>
+		<script src="javascript/index.js"></script>
+		<script src="javascript/logcon.js"></script> 
+</body>
+
+</html>

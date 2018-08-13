@@ -36,9 +36,6 @@ const hashPass = process.env.hashPass || '@#someword';
 
 /**All The Routes And Setting */
 
-app.get('/', (req, res) => {
-    res.send('home page')
-});
 //SIGNUP PAGE + MONGODB
 app.get('/signup', (req, res) => {
     res.render('signup.hbs')
@@ -76,6 +73,17 @@ app.post('/users', (req, res) => {
     })
 });
 //SIGNUP PAGE + MONGODB END
+
+//To Get user info
+
+app.get('/users/me', authenticate, (req, res) => {
+    console.log('working');
+    res.send(req.user);
+    // res.send('hi there')
+});
+//To Get user info END
+
+
 
 //SIGN IN PAGE + MONGODB
 app.get('/signin', (req, res) => {
@@ -116,10 +124,10 @@ app.post('/users/login', (req, res) => {
 //SIGN IN PAGE + MONGODB END
 
 //Add Post PAGE + MONGODB
-app.get('/postAd',(req,res) =>{
+app.get('/postAd', (req, res) => {
     res.render('post-add.hbs')
 });
-app.post('/postAd',authenticate,(req, res) => {
+app.post('/postAd', authenticate, (req, res) => {
     var body = req.body;
     // console.log(body);
 
@@ -135,6 +143,23 @@ app.post('/postAd',authenticate,(req, res) => {
 });
 
 //Add Post PAGE + MONGODB END
+
+
+// Retive Ads Main Page
+app.get('/', (req, res) => {
+    res.render('index.hbs')
+});
+app.get('/data', (req, res) => {
+    Ads.find({
+    }).then((ads) => {
+        res.send(ads)
+    }, err => {
+        res.send(err);
+    });
+});
+//Retrive Ads Main Page END
+
+
 
 
 

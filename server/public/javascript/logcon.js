@@ -1,21 +1,31 @@
-var icon = document.getElementById("loginIcon");
-var logincon = JSON.parse(localStorage.getItem("userLogin"));
-var userID = JSON.parse(localStorage.getItem("userID"));
+var token = localStorage.getItem('token');
+console.log(token);
 
 
 
-if (logincon) {
-    var database = firebase.database().ref(`users/${userID}`);
 
-    database.on("value", function (x) {
-        let data = x.val();
-        icon.innerHTML = `	<a href="JavaScript:void(0)" aria-expanded="false">
-        ${data.fullname}</a> <input type="submit" onclick="logout()" value="Sign Out" /> `;
-        localStorage.setItem("userName", JSON.stringify(data.fullname));
-
-    })
+if (token) {
 
 
+    console.log('working');
+    fetch("http://localhost:8000/users/me",
+        {
+            headers: {
+                'x-auth':token
+            }
+            
+        }).then(function (res) {
+            // localStorage.setItem('token', res.headers.get('x-auth'));
+            return res.json()
+        }).then(user => {
+            console.log(user);
+            icon.innerHTML = `	<a href="JavaScript:void(0)" aria-expanded="false">
+        ${user.name}</a> <input type="submit" onclick="logout()" value="Sign Out" /> `;
+        })
+
+    // icon.innerHTML = `	<a href="JavaScript:void(0)" aria-expanded="false">
+    //     ${data.fullname}</a> <input type="submit" onclick="logout()" value="Sign Out" /> `;
+    // localStorage.setItem("userName", JSON.stringify(data.fullname));
 
 }
 function logout() {
