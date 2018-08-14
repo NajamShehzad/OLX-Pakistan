@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>BaechDay | MOBILES </title>
+	<link rel="stylesheet" href="css/font-awesome.min.css" />
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- bootstrap-CSS -->
+	{{!--
+	<link rel="stylesheet" href="css/bootstrap-select.css"> --}}
+	<!-- bootstrap-select-CSS -->
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- style.css -->
+
+	<!-- Navigation-CSS -->
+	<!-- meta tags -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> {{!--
+	<script src="js/bootstrap.js"></script>
+	<script src="js/bootstrap-select.js"></script>
+
+
+	<script src="js/tabs.js"></script> --}}
+	<link rel="stylesheet" href="cahtbtn.css" type="text/css" media="all">
+	<style>
+		#favbtn {
+			padding: 3px 6px;
+			background-color: #15c01c;
+		}
+
+		@media only screen and (max-width: 600px) {
+			#favbtn {
+				display: none;
+			}
+			#livechat-compact1 {
+				display: block;
+			}
+		}
+
+		.boxCategory {
+			background: #fff;
+			color: rgb(12, 179, 245);
+			border-top: 4px solid #F27C40;
+			padding: 20px 10px;
+			cursor: pointer;
+			border: 1px solid #ccc;
+			border-bottom: 0px;
+			border-bottom: 1px solid #ccc;
+		}
+	</style>
+
+	<!-- //switcher-grid and list alignment -->
+</head>
+
+<body>
+	<div class="btn-chat" id="livechat-compact-container" style="visibility: visible; opacity: 1;">
+		<div class="btn-holder">
+			<a onclick="parent.LC_API.open_chat_window();return false;" href="chatpage.html" class="link">Live Chat</a>
+		</div>
+	</div>
+	<div class="btn-chat" id="livechat-compact" style="visibility: visible; opacity: 1;">
+		<div class="btn-holder">
+			<a onclick="parent.LC_API.open_chat_window();return false;" href="myads.html" class="link"> Your Ads</a>
+		</div>
+	</div>
+	<div class="btn-chat" id="livechat-compact1" style="visibility: visible; opacity: 1;">
+		<div class="btn-holder">
+			<a onclick="parent.LC_API.open_chat_window();return false;" href="myads.html" class="link">Favorites</a>
+		</div>
+	</div>
+	<!-- //Navigation -->
+	<!-- header -->
+	<header>
+		<div class="w3ls-header">
+			<button style="float: left;" class="btn btn-success" onclick="location.href='fav.html'" id="favbtn">Favorite</button>
+			<!--header-one-->
+			<div class="w3ls-header-right">
+				<ul>
+					<li class="dropdown head-dpdn" id="icon">
+						<a href="/signin" aria-expanded="false">
+							<i class="fa fa-user" aria-hidden="true"></i> Sign In</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="clearfix"> </div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="logo col-md-3 ">
+					<h1>
+						<a href="/">
+							<span>Baech</span>Day</a>
+					</h1>
+				</div>
+				<div class="col-md-9 con" style="margin-top: 1.5%;padding:0px;">
+					<input type="search" class="form-control" placeholder="Search Here...." name="searchBox" id="searchBox">
+					<select class="" id="selectbox">
+						<option selected value='all'>All</option>
+						<option value="mobile">Mobiles</option>
+						<option value="appliances">Electronics and Appliances</option>
+						<option value="vehicles">Vehicles</option>
+						<option value="property">Real, Estate</option>
+					</select>
+					<input post-w3layouts-ad type="button" onclick="searchAdd()" class="btn btn-secondary " id="searchHere" value="Search Ad">
+					<a class="btn btn-info" id="addpostbtn" href="post-ad.html">Post Free Ad</a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- //header -->
+	<!-- breadcrumbs -->
+	<div class="w3layouts-breadcrumbs text-center">
+		<div class="container">
+			<span class="agile-breadcrumbs">
+				<a href="/">
+					<i class="fa fa-home home_1"></i>
+				</a>
+				<span>Mobiles</span>
+			</span>
+		</div>
+	</div>
+	<!-- //breadcrumbs -->
+	<!-- Electronic appliances -->
+	<div class="total-ads main-grid-border">
+
+		<div class="ads-grid">
+			<div class="agileinfo-ads-display container">
+				<div class="wrapper">
+					<div class="col-sm-2">
+
+						<div class="boxCategory" id="mobile" onclick="setCategory(this,'mobile')">
+							<span class="fa fa-mobile"></span>&nbsp;&nbsp;Mobiles</div>
+						<div class="boxCategory" id="appliances" onclick="setCategory(this,'appliances')">
+							<span class="fa fa-laptop"></span>&nbsp;&nbsp;Electronics &amp; Appliances</div>
+						<div class="boxCategory" id="vehicles" onclick="setCategory(this,'vehicles')">
+							<span class="fa fa-car"></span>&nbsp;&nbsp;Vehicle</div>
+						<div class="boxCategory" id="property" onclick="setCategory(this,'property')">
+							<span class="fa fa-home"></span>&nbsp;&nbsp;House &amp; Property</div>
+
+
+
+					</div>
+					<div class="bs-example bs-example-tabs col-sm-10" role="tabpanel" data-example-id="togglable-tabs">
+						<ul id="myTab" class="nav nav-tabs nav-tabs-responsive" role="tablist">
+							<li role="presentation" class="active">
+								<a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">
+									<span class="text">All Ads</span>
+								</a>
+							</li>
+
+						</ul>
+						<div id="myTabContent" class="tab-content">
+							<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+								<div>
+									<div id="container">
+										<ul class="list" id="categoryAll">
+											
+										</ul>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	</div>
+	<!-- // Electronic appliances -->
+	<!--footer section start-->
+	<footer>
+		<div class="w3-agileits-footer-top">
+			<div class="container">
+				<div class="wthree-foo-grids">
+					<div class="col-md-9 wthree-footer-grid">
+						<h4 class="footer-head">About Us</h4>
+						<p style="text-align:justify;">
+							BaechDay.pk is a free local classifieds site. Sell anything from used cars to mobiles, furniture, laptops, clothing and more.
+							Submit ads for free. If you want to buy something - here you will find interesting items, cheaper than in the store.
+							Start buying and selling in the most easy way on BaechDay.pk.
+						</p>
+					</div>
+					<div class="col-md-3 wthree-footer-grid right">
+						<h4 class="footer-head">Contact Us</h4>
+						<span class="hq">Our headquarters</span>
+						<address>
+							<ul class="location">
+								<li>
+									<span class="glyphicon glyphicon-map-marker"></span>
+								</li>
+								<li>I.T Planet Head Office,Tariq Road Karachi. </li>
+							</ul>
+							<div class="clearfix"> </div>
+							<ul class="location">
+								<li>
+									<span class="glyphicon glyphicon-earphone"></span>
+								</li>
+								<li>+92-2136548</li>
+							</ul>
+							<div class="clearfix"> </div>
+							<ul class="location">
+								<li>
+									<span class="glyphicon glyphicon-envelope"></span>
+								</li>
+								<li>
+									<a href="info@itplanet.com">mail@itplanet.com</a>
+								</li>
+							</ul>
+						</address>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="agileits-footer-bottom text-center">
+			<div class="container">
+				<div class="w3-footer-logo">
+					<h1>
+						<a href="index.html">
+							<span>Baech</span>Day</a>
+					</h1>
+				</div>
+				<div class="w3-footer-social-icons">
+					<ul>
+						<li>
+							<a class="facebook" href="https://www.facebook.com/najamshehzadbutt" target="_blank">
+								<i class="fa fa-facebook" aria-hidden="true"></i>
+								<span>Facebook</span>
+							</a>
+						</li>
+						<li>
+							<a class="twitter" href="https://twitter.com/NajamShehzad_B" target="_blank">
+								<i class="fa fa-twitter" aria-hidden="true"></i>
+								<span>Twitter</span>
+							</a>
+						</li>
+
+						<li>
+							<a class="googleplus" href="https://plus.google.com/u/0/115993998049444930711" target="_blank">
+								<i class="fa fa-google-plus" aria-hidden="true"></i>
+								<span>Google+</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="copyrights">
+					<p> © 2018 BachDay. All Rights Reserved | Design by
+						<a href="https://www.facebook.com/najamshehzadbutt" target="_blank"> Najam Butt</a>
+					</p>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</footer>
+
+	<script> var url = '{{url}}'; </script>
+	<script src="javascript/logcon.js"></script>
+	<script src="javascript/category.js"></script>
+</body>
+
+</html>

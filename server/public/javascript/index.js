@@ -79,7 +79,10 @@ fetch(`${url}/data`)
 
 
 
-
+function categorypage(category){
+    localStorage.setItem('category',category);
+    location.href="/category"
+}
 
 
 

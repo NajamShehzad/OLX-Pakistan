@@ -181,8 +181,22 @@ app.get('/addPage/:id', (req, res) => {
 });
 //Retrive Ads In Single Page END
 
-
-
+//category Page 
+app.get('/category', (req, res) => {
+    res.render('category.hbs',{url})
+});
+app.post('/category', (req, res) => {
+    console.log(req.body);
+    var category = req.body.categoryName;
+    Ads.find({
+        category:category
+    }).then((ads) => {
+        res.send(ads)
+    }, err => {
+        res.send(err);
+    });
+});
+//catogry Page END
 
 
 server.listen(port, () => {

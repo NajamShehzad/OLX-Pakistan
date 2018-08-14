@@ -29,7 +29,7 @@ if (addId != null) {
             title.innerHTML = add.title;
             image.innerHTML = `<li data-thumb="images/ss1.jpg">
             <img width=512 height=512 src="${add.image}" /></li>`;
-            description.innerHTML = add.description;
+            description.innerHTML = add.discription;
             time.innerHTML = add.time;
             price.innerHTML = add.price;
             model.innerHTML = add.model;
