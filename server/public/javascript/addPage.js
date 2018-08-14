@@ -1,8 +1,6 @@
 var addId = JSON.parse(localStorage.getItem("addId"));
-console.log(addId);
-var localData;
-var addUserID;
-var addUserName;
+
+
 
 if (addId != null) {
 
@@ -20,12 +18,12 @@ if (addId != null) {
     var favIcon = document.getElementById('favIcon');
 
     var database = firebase.database();
-    fetch(`https://sylani-fa1f7.firebaseio.com/adds/${addId}.json`)
+    fetch(`http://localhost:8000/addPage/${addId}`)
         .then(x => x.json())
-        .then(x => {
-            console.log(x);
-            var add = x;
-            addUserID = add.userID
+        .then(add => {
+            console.log(add);
+            
+            addUserID = add.sellerID
             document.title = add.title;
             localData = add;
             title.innerHTML = add.title;
@@ -37,20 +35,20 @@ if (addId != null) {
             model.innerHTML = add.model;
             category.innerHTML = add.category.toUpperCase();
             category2.innerHTML = add.category.toUpperCase();
-            mobile.innerHTML = add.mobile;
+            mobile.innerHTML = add.mobileNum;
             userName.innerHTML = add.userName;
             addUserName = add.userName;
 
-            let favoriteList = database.ref(`favorite/${userID}/${addId}`);
-            favoriteList.once('value', (val) => {
-                console.log(val.val())
-                if (val.exists()) {
+            // let favoriteList = database.ref(`favorite/${userID}/${addId}`);
+            // favoriteList.once('value', (val) => {
+            //     console.log(val.val())
+            //     if (val.exists()) {
 
-                    favIcon.setAttribute('class', 'glyphicon glyphicon-heart');
+            //         favIcon.setAttribute('class', 'glyphicon glyphicon-heart');
 
-                }
+            //     }
 
-            })
+            // })
 
 
 
@@ -62,28 +60,28 @@ if (addId != null) {
 
 
 function addToFav() {
-    if (logincon) {
-        let favoriteList = database.ref(`favorite/${userID}/${addId}`);
-        favoriteList.once('value', (val) => {
-            if (val.exists()) {
-                favoriteList.remove()
-                    .then(() => {
-                        favIcon.setAttribute('class', 'glyphicon glyphicon-heart-empty');
-                    })
-            }
-            else {
-                favoriteList.set({
-                    addId: addId
-                })
-                    .then(() => {
-                        favIcon.setAttribute('class', 'glyphicon glyphicon-heart');
-                    })
-            }
-        })
-    }
-    else {
-        alert("Please Login To Continue");
-    }
+    // if (logincon) {
+    //     let favoriteList = database.ref(`favorite/${userID}/${addId}`);
+    //     favoriteList.once('value', (val) => {
+    //         if (val.exists()) {
+    //             favoriteList.remove()
+    //                 .then(() => {
+    //                     favIcon.setAttribute('class', 'glyphicon glyphicon-heart-empty');
+    //                 })
+    //         }
+    //         else {
+    //             favoriteList.set({
+    //                 addId: addId
+    //             })
+    //                 .then(() => {
+    //                     favIcon.setAttribute('class', 'glyphicon glyphicon-heart');
+    //                 })
+    //         }
+    //     })
+    // }
+    // else {
+    //     alert("Please Login To Continue");
+    // }
 
 
 

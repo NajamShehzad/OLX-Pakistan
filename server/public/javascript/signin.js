@@ -27,6 +27,7 @@ function signUser() {
                 document.getElementById('form1').reset();
                 console.log(user);
                 localStorage.setItem('userInfo',JSON.stringify(user))
+                location.href = '/';
             }
         })
         .catch(function (err) { console.log('err', err) })

@@ -145,6 +145,8 @@ app.post('/postAd', authenticate, (req, res) => {
 //Add Post PAGE + MONGODB END
 
 
+
+
 // Retive Ads Main Page
 app.get('/', (req, res) => {
     res.render('index.hbs')
@@ -158,6 +160,25 @@ app.get('/data', (req, res) => {
     });
 });
 //Retrive Ads Main Page END
+
+// Retive Ads In Single Page
+app.get('/addPage', (req, res) => {
+    res.render('addPage.hbs')
+});
+app.get('/addPage/:id', (req, res) => {
+    var id = req.params.id;
+    if (!ObjectID.isValid(id)) {
+        return res.status(404).send("id is Not Valid");
+    }
+    Ads.findOne({
+        _id: id
+    }).then((ads) => {
+        res.send(ads)
+    }, err => {
+        res.send(err);
+    });
+});
+//Retrive Ads In Single Page END
 
 
 

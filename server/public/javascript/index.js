@@ -246,5 +246,5 @@ function searchAdd() {
 
 function addPage(addId) {
     localStorage.setItem('addId', JSON.stringify(addId));
-    // location.href = "addPage.html"
+    location.href = "/addPage"
 }

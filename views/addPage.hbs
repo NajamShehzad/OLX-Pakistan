@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>BaechDay </title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- bootstrap-CSS -->
+    <link rel="stylesheet" href="css/bootstrap-select.css">
+    <!-- bootstrap-select-CSS -->
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- style.css -->
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui1.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <!-- fontawesome-CSS -->
+    <link rel="stylesheet" href="css/menu_sideslide.css" type="text/css" media="all">
+    <!-- Navigation-CSS -->
+    <!-- meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Resale Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //meta tags -->
+    <style>
+        #favbtn {
+            padding: 3px 6px;
+            background-color: #15c01c;
+        }
+
+        #favbtn1 {
+            padding: 3px 6px;
+            background-color: #15c01c;
+        }
+
+        #sentbtn {
+            width: 20%;
+        }
+
+        #inputfield {
+            width: 80%;
+        }
+
+        @media only screen and (max-width: 600px) {
+            #favbtn {
+                display: none;
+            }
+            #sentbtn {
+                width: 20%;
+            }
+        }
+
+        @media only screen and (max-width: 400px) {
+
+            #description {
+                padding-left: 14px
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="chat.css" />
+    <link rel="stylesheet" href="chatbox.css" />
+</head>
+
+<body>
+    <div id="chatdiv" class="text-center">
+        <div class="chat_window">
+            <div class="top_menu">
+                <div id="titleChat" class="buttons">
+                    <div class="button close" style="padding: 2px 0px;padding-bottom: 20px;border: none" onclick="off()">X</div>
+                </div>
+                <div class="title" id="friendName">Chat</div>
+            </div>
+            <ul id="conversationArea" class="messages">
+
+            </ul>
+            <div class="bottom_wrapper clearfix">
+                <form action="JavaScript:void(0)" onsubmit="sentmsg()">
+                    <div class="message_input_wrapper" id="inputfield">
+                        <input id="message" style="width: 90%" tabindex=14 class="message_input" placeholder="Type your message here.." />
+                    </div>
+                    <div class="send_message" id="sentbtn">
+                        <a id="sentBtn1" tabindex=15 onclick="sentmsg()">
+                            <div class="icon"></div>
+                            <div class="text" tab=6>Send
+                            </div>
+
+                        </a>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <header>
+        <div class="w3ls-header">
+            <button style="float: left;" onclick="location.href='fav.html'" id="favbtn">Favorite</button>
+            <!--header-one-->
+            <div class="w3ls-header-right">
+                <ul>
+                    <li class="dropdown head-dpdn" id="icon">
+                        <a href="/signin" aria-expanded="false">
+                            <i class="fa fa-user" aria-hidden="true"></i> Sign In</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="clearfix"> </div>
+        </div>
+        <div class="container">
+            <div class="agile-its-header">
+                <div class="logo">
+                    <h1>
+                        <a href="/">
+                            <span>Baech</span>Day</a>
+                    </h1>
+                </div>
+                <a class="post-w3layouts-ad" href="post-ad.html">Post Free Ad</a>
+            </div>
+        </div>
+    </header>
+    <!-- //header -->
+    <!-- breadcrumbs -->
+    <div class="w3layouts-breadcrumbs text-center">
+        <div class="container">
+            <span class="agile-breadcrumbs">
+                <a href="index.html">
+                    <i class="fa fa-home home_1"></i>
+                </a> /
+                <span>Ad!</span>
+            </span>
+        </div>
+    </div>
+    <!-- //breadcrumbs -->
+    <!-- Electronic appliances-->
+    <div class="single-page main-grid-border">
+        <div class="container">
+            <div class="product-desc">
+                <div class="col-md-7 product-view">
+                    <h2 id="title">---</h2>
+                    <p> Added at
+                        <span id="time"></span>
+                    </p>
+                    <div class="flexslider">
+                        <ul class="slides" id="image">
+                            <li data-thumb="images/ss1.jpg">
+                                <img style="max-height: 600px; max-width: 600px" src="images/loading.jpg" />
+                            </li>
+                    </div>
+                    <!-- FlexSlider -->
+
+
+
+                    <!-- //FlexSlider -->
+                    <div class="product-details" class="detail">
+                        <h4>
+                            <span class="w3layouts-agileinfo">Model:</span>
+                            <span id="model">---</span>
+                            <div class="clearfix"></div>
+                        </h4>
+                        <h4>
+                            <span class="w3layouts-agileinfo">Category:</span>
+                            <span id="category">----</span>
+                        </h4>
+                        <h4>
+                            <span class="w3layouts-agileinfo">Description:</span>
+                        </h4>
+                        <p id="description" style="font-size: 18px; color: black;margin-top: -7px">----</p>
+                        <div class="clearfix"></div>
+
+                    </div>
+                </div>
+                <div class="col-md-5 product-details-grid">
+                    <div class="item-price">
+                        <div class="product-price">
+                            <p class="p-price">Price:</p>
+                            <h3 class="rate">
+                                <span id="price">----</span>
+                            </h3>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="condition">
+                            <p class="p-price">Condition</p>
+                            <h4>Good</h4>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="itemtype">
+                            <p class="p-price">Item Type</p>
+                            <h4 id="category2">---</h4>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="interested text-center">
+                        <h4>Interested in this Ad?
+
+                            <span style="color: rgb(21, 118, 216);cursor: pointer;" onclick="showChat()"> Chat With
+                                <span id="userName"> Seller!</span>
+                        </h4>
+                        <p>
+                            <i class="glyphicon glyphicon-earphone"></i>
+                            <span id="mobile">---</span>
+                        </p>
+                        <p onclick="addToFav()" style="font-size: 1.5em;cursor: pointer;">
+                            <!-- <button id="favbtn1" onclick="addToFav()">Add To Favorite</button> -->
+                            <span id="">Favorite</span>
+                            <span style="color: red;font-size: 2em" id="favIcon" class="glyphicon glyphicon-heart-empty"></span>
+                        </p>
+                    </div>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!--footer section start-->
+    <div class="clearfix"></div>
+    <footer>
+        <div class="w3-agileits-footer-top">
+            <div class="container">
+                <div class="wthree-foo-grids">
+                    <div class="col-md-9 wthree-footer-grid">
+                        <h4 class="footer-head">About Us</h4>
+                        <p style="text-align:justify;">
+                            BaechDay.pk is a free local classifieds site. Sell anything from used cars to mobiles, furniture, laptops, clothing and more.
+                            Submit ads for free. If you want to buy something - here you will find interesting items, cheaper
+                            than in the store. Start buying and selling in the most easy way on BaechDay.pk.
+                        </p>
+                    </div>
+                    <div class="col-md-3 wthree-footer-grid right">
+                        <h4 class="footer-head">Contact Us</h4>
+                        <span class="hq">Our headquarters</span>
+                        <address>
+                            <ul class="location">
+                                <li>
+                                    <span class="glyphicon glyphicon-map-marker"></span>
+                                </li>
+                                <li>I.T Planet Head Office,Tariq Road Karachi. </li>
+                            </ul>
+                            <div class="clearfix"> </div>
+                            <ul class="location">
+                                <li>
+                                    <span class="glyphicon glyphicon-earphone"></span>
+                                </li>
+                                <li>+92-2136548</li>
+                            </ul>
+                            <div class="clearfix"> </div>
+                            <ul class="location">
+                                <li>
+                                    <span class="glyphicon glyphicon-envelope"></span>
+                                </li>
+                                <li>
+                                    <a href="info@itplanet.com">mail@itplanet.com</a>
+                                </li>
+                            </ul>
+                        </address>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="agileits-footer-bottom text-center">
+            <div class="container">
+                <div class="w3-footer-logo">
+                    <h1>
+                        <a href="index.html">
+                            <span>Baech</span>Day</a>
+                    </h1>
+                </div>
+                <div class="w3-footer-social-icons">
+                    <ul>
+                        <li>
+                            <a class="facebook" href="https://www.facebook.com/najamshehzadbutt" target="_blank">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                                <span>Facebook</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="twitter" href="https://twitter.com/NajamShehzad_B" target="_blank">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                                <span>Twitter</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="googleplus" href="https://plus.google.com/u/0/115993998049444930711" target="_blank">
+                                <i class="fa fa-google-plus" aria-hidden="true"></i>
+                                <span>Google+</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="copyrights">
+                    <p> © 2018 BachDay. All Rights Reserved | Design by
+                        <a href="https://www.facebook.com/najamshehzadbutt" target="_blank"> Najam Butt</a>
+                    </p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCggl12DJNqEHfe7VRDzQlAG5nEcXb28R4",
+            authDomain: "sylani-fa1f7.firebaseapp.com",
+            databaseURL: "https://sylani-fa1f7.firebaseio.com",
+            projectId: "sylani-fa1f7",
+            storageBucket: "sylani-fa1f7.appspot.com",
+            messagingSenderId: "244619989865"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="javascript/logcon.js"></script>
+    <script src="javascript/addPage.js"></script>
+    <script src="javascript/chat.js"></script>
+    <style>
+        .detail {
+            font-size: 200%
+        }
+    </style>
+
+</body>
+
+</html>
