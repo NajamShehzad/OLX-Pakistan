@@ -94,7 +94,7 @@ function postadd() {
                 time: new Date().toLocaleString()
             }
 
-            fetch("http://localhost:8000/postAd",
+            fetch(`${url}/postAd`,
                 {
                     headers: {
                         'Accept': 'application/json',
