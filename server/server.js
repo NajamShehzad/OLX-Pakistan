@@ -31,6 +31,7 @@ app.set("view engine", "hbs");
 
 const tokenPass = process.env.tokenPass || 'abc123';
 const hashPass = process.env.hashPass || '@#someword';
+var url = process.env.webUrl ||'http://localhost:8000';
 
 /**Middleware And Some Config END */
 
@@ -38,7 +39,7 @@ const hashPass = process.env.hashPass || '@#someword';
 
 //SIGNUP PAGE + MONGODB
 app.get('/signup', (req, res) => {
-    res.render('signup.hbs')
+    res.render('signup.hbs',{url})
 });
 app.post('/users', (req, res) => {
     var body = _.pick(req.body, ['email', 'password', 'name']);
@@ -87,7 +88,7 @@ app.get('/users/me', authenticate, (req, res) => {
 
 //SIGN IN PAGE + MONGODB
 app.get('/signin', (req, res) => {
-    res.render('signin.hbs')
+    res.render('signin.hbs',{url})
 });
 app.post('/users/login', (req, res) => {
     var body = _.pick(req.body, ['email', 'password']);
@@ -125,7 +126,7 @@ app.post('/users/login', (req, res) => {
 
 //Add Post PAGE + MONGODB
 app.get('/postAd', (req, res) => {
-    res.render('post-add.hbs')
+    res.render('post-add.hbs',{url})
 });
 app.post('/postAd', authenticate, (req, res) => {
     var body = req.body;
@@ -149,7 +150,7 @@ app.post('/postAd', authenticate, (req, res) => {
 
 // Retive Ads Main Page
 app.get('/', (req, res) => {
-    res.render('index.hbs')
+    res.render('index.hbs',{url})
 });
 app.get('/data', (req, res) => {
     Ads.find({
@@ -163,7 +164,7 @@ app.get('/data', (req, res) => {
 
 // Retive Ads In Single Page
 app.get('/addPage', (req, res) => {
-    res.render('addPage.hbs')
+    res.render('addPage.hbs',{url})
 });
 app.get('/addPage/:id', (req, res) => {
     var id = req.params.id;

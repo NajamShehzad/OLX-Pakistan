@@ -8,7 +8,7 @@ if (token) {
 
 
     console.log('working');
-    fetch("http://localhost:8000/users/me",
+    fetch(`${url}/users/me`,
         {
             headers: {
                 'x-auth':token

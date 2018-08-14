@@ -20,7 +20,7 @@ var icon = document.getElementById("loginIcon");
 // .then(x => x.json()).then(x => console.log(x));
 
 
-fetch("http://localhost:8000/data")
+fetch(`${url}/data`)
     .then(function (res) {
         return res.json()
     }).then(data => {

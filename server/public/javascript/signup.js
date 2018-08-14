@@ -4,7 +4,7 @@ function signup() {
     var password = document.getElementById("password").value;
     var email = document.getElementById("email").value;
     // var form = new FormData(document.querySelector('#form1'));
-    fetch("http://localhost:8000/users",
+    fetch(`${url}/users`,
         {
             headers: {
                 'Accept': 'application/json',

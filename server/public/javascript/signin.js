@@ -8,7 +8,7 @@ function signUser() {
     var password = document.getElementById("password").value;
     console.log(email, password);
     // var form = new FormData(document.querySelector('#form1'));
-    fetch("http://localhost:8000/users/login",
+    fetch(`${url}/users/login`,
         {
             headers: {
                 'Accept': 'application/json',

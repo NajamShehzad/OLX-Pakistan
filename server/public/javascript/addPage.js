@@ -18,7 +18,7 @@ if (addId != null) {
     var favIcon = document.getElementById('favIcon');
 
     var database = firebase.database();
-    fetch(`http://localhost:8000/addPage/${addId}`)
+    fetch(`${url}/addPage/${addId}`)
         .then(x => x.json())
         .then(add => {
             console.log(add);
