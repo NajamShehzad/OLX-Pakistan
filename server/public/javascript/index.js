@@ -130,15 +130,12 @@ function categorypage(category){
 
 function searchAdd() {
     var addToSearch = document.getElementById('searchBox').value;
+    console.log(addToSearch);
     localStorage.setItem('addToSearch', JSON.stringify(addToSearch));
     var searchType = document.getElementById("selectbox").value;
     localStorage.setItem('searchType', searchType);
-    // console.log(addToSearch)
-
-    // location.href = 'addHere.html';
-
-
-
+    console.log(addToSearch)
+    location.href ='/search';
 }
 
 // let data1 = database.ref(`adds`).orderByChild('category').equalTo('mobile').limitToFirst(4);

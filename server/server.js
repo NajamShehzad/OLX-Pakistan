@@ -31,7 +31,7 @@ app.set("view engine", "hbs");
 
 const tokenPass = process.env.tokenPass || 'abc123';
 const hashPass = process.env.hashPass || '@#someword';
-var url = process.env.webUrl ||'http://localhost:8000';
+var url = process.env.webUrl || 'http://localhost:8000';
 
 /**Middleware And Some Config END */
 
@@ -39,7 +39,7 @@ var url = process.env.webUrl ||'http://localhost:8000';
 
 //SIGNUP PAGE + MONGODB
 app.get('/signup', (req, res) => {
-    res.render('signup.hbs',{url})
+    res.render('signup.hbs', { url })
 });
 app.post('/users', (req, res) => {
     var body = _.pick(req.body, ['email', 'password', 'name']);
@@ -88,7 +88,7 @@ app.get('/users/me', authenticate, (req, res) => {
 
 //SIGN IN PAGE + MONGODB
 app.get('/signin', (req, res) => {
-    res.render('signin.hbs',{url})
+    res.render('signin.hbs', { url })
 });
 app.post('/users/login', (req, res) => {
     var body = _.pick(req.body, ['email', 'password']);
@@ -126,7 +126,7 @@ app.post('/users/login', (req, res) => {
 
 //Add Post PAGE + MONGODB
 app.get('/postAd', (req, res) => {
-    res.render('post-add.hbs',{url})
+    res.render('post-add.hbs', { url })
 });
 app.post('/postAd', authenticate, (req, res) => {
     var body = req.body;
@@ -150,7 +150,7 @@ app.post('/postAd', authenticate, (req, res) => {
 
 // Retive Ads Main Page
 app.get('/', (req, res) => {
-    res.render('index.hbs',{url})
+    res.render('index.hbs', { url })
 });
 app.get('/data', (req, res) => {
     Ads.find({
@@ -164,7 +164,7 @@ app.get('/data', (req, res) => {
 
 // Retive Ads In Single Page
 app.get('/addPage', (req, res) => {
-    res.render('addPage.hbs',{url})
+    res.render('addPage.hbs', { url })
 });
 app.get('/addPage/:id', (req, res) => {
     var id = req.params.id;
@@ -183,13 +183,13 @@ app.get('/addPage/:id', (req, res) => {
 
 //category Page 
 app.get('/category', (req, res) => {
-    res.render('category.hbs',{url})
+    res.render('category.hbs', { url })
 });
 app.post('/category', (req, res) => {
     console.log(req.body);
     var category = req.body.categoryName;
     Ads.find({
-        category:category
+        category: category
     }).then((ads) => {
         res.send(ads)
     }, err => {
@@ -197,6 +197,28 @@ app.post('/category', (req, res) => {
     });
 });
 //catogry Page END
+
+
+
+//Search bar using Index test 
+app.get('/search', (req, res) => {
+    res.render('search.hbs');
+});
+app.post('/search', (req, res) => {
+    console.log(req.body);
+    var item = req.body.item
+    Ads.find({ $text: { $search: item } })
+    .then(data => res.send(data));
+    // res.render('search.hbs');
+})
+
+
+//Search bar using Index test END
+
+
+
+
+
 
 
 server.listen(port, () => {
