@@ -18,11 +18,13 @@ function signUser() {
             body: JSON.stringify({ email, password})
         })
         .then(function (res) {
+            console.log(res);
+            
             localStorage.setItem('token', res.headers.get('x-auth'));
             return res.json()
         }).then(user => {
-            if(user.code == 11000){
-                return    alert('Email Already in Record')
+            if(user.code){
+                return    alert('SomeThing Went Wrong')
             }else{
                 document.getElementById('form1').reset();
                 console.log(user);
@@ -30,7 +32,7 @@ function signUser() {
                 location.href = '/';
             }
         })
-        .catch(function (err) { console.log('err', err) })
+        .catch(function (err) { console.log('err', err);alert('Please type Correct Email/Password') })
     return false;
 
 

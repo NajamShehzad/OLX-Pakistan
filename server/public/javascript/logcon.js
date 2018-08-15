@@ -21,6 +21,7 @@ if (token) {
             console.log(user);
             icon.innerHTML = `	<a href="JavaScript:void(0)" aria-expanded="false">
         ${user.name}</a> <input type="submit" onclick="logout()" value="Sign Out" /> `;
+        var userLog = true;
         })
 
     // icon.innerHTML = `	<a href="JavaScript:void(0)" aria-expanded="false">
@@ -29,14 +30,11 @@ if (token) {
 
 }
 function logout() {
-    firebase.auth().signOut().then(function () {
-        localStorage.setItem("userID", JSON.stringify(null));
-        localStorage.setItem("userLogin", JSON.stringify(null));
-        localStorage.setItem("notification", JSON.stringify(null));
-        firebase.database().ref('tokens').child(userID).remove();
-        location.reload();
-        // Sign-out successful.
-    }).catch(function (error) {
-        // An error happened.
-    });
+   fetch(`${url}/user/logout`,{
+       headers:{
+           'x-auth':token
+       },
+       method:'DELETE'
+   }).then(x=>{console.log(x);localStorage.removeItem('token');location.href='/'}).catch(err => console.log(err)
+   );
 }

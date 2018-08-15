@@ -82,7 +82,9 @@ app.get('/users/me', authenticate, (req, res) => {
     res.send(req.user);
     // res.send('hi there')
 });
+
 //To Get user info END
+
 
 
 
@@ -123,6 +125,23 @@ app.post('/users/login', (req, res) => {
     });
 });
 //SIGN IN PAGE + MONGODB END
+
+//SignOut page
+
+app.delete('/user/logout',authenticate,(req,res)=>{
+    req.user.removeToken(req.token).then(()=> {
+        res.status(200).send('Token Removed'); 
+    },() => {
+        res.status(400).send();
+    })
+});
+
+//SignOut page END
+
+
+
+
+
 
 //Add Post PAGE + MONGODB
 app.get('/postAd', (req, res) => {
@@ -181,6 +200,56 @@ app.get('/addPage/:id', (req, res) => {
 });
 //Retrive Ads In Single Page END
 
+//To get user Ads To Edit And Delete
+app.get('/ads', (req, res) => {
+    res.render('myads.hbs');
+});
+app.get('/ads/my', authenticate, (req, res) => {
+    var _id = req.user._id;
+    Ads.find({
+        sellerID: _id
+    }).then(data => {
+        res.send(data);
+    })
+});
+app.patch('/ads/my', authenticate, (req, res) => {
+    var body = req.body;
+    var _id = req.body._id;
+    console.log(_id);
+    Ads.findOneAndUpdate({
+        _id
+    }, { $set: body }, { new: true })
+        .then((data) => {
+            if (!data) {
+                return res.status(404).send();
+            }
+            res.send(data);
+        }, err => {
+            res.status(404).send();
+        })
+
+});
+app.delete('/ads/my/:id', (req, res) => {
+    var id = req.params.id;
+    if (!ObjectID.isValid(id)) {
+        return res.status(404).send("id is Not Valid");
+    }
+    Ads.findByIdAndRemove({
+        _id: id
+    }).then((ads) => {
+        res.send(ads)
+        console.log(ads);
+    }, err => {
+        res.send(err);
+    });
+});
+//To get user Ads to Edit And Delete END
+
+
+
+
+
+
 //category Page 
 app.get('/category', (req, res) => {
     res.render('category.hbs', { url })
@@ -200,7 +269,7 @@ app.post('/category', (req, res) => {
 
 
 
-//Search bar using Index test 
+//Search bar using Index text 
 app.get('/search', (req, res) => {
     res.render('search.hbs');
 });
@@ -208,12 +277,12 @@ app.post('/search', (req, res) => {
     console.log(req.body);
     var item = req.body.item
     Ads.find({ $text: { $search: item } })
-    .then(data => res.send(data));
+        .then(data => res.send(data));
     // res.render('search.hbs');
 })
 
 
-//Search bar using Index test END
+//Search bar using Index text END
 
 
 

@@ -173,12 +173,10 @@ function addPage(addId) {
 
 function searchAdd() {
     var addToSearch = document.getElementById('searchBox').value;
+    console.log(addToSearch);
     localStorage.setItem('addToSearch', JSON.stringify(addToSearch));
     var searchType = document.getElementById("selectbox").value;
     localStorage.setItem('searchType', searchType);
     console.log(addToSearch)
-
-    location.href = 'addHere.html';
-
-
+    location.href ='/search';
 }

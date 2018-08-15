@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>BaechDay | My Ads </title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- bootstrap-CSS -->
+    {{!-- <link rel="stylesheet" href="css/bootstrap-select.css"> --}}
+    <!-- bootstrap-select-CSS -->
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- style.css -->
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui1.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <!-- fontawesome-CSS -->
+    <link rel="stylesheet" href="css/menu_sideslide.css" type="text/css" media="all">
+    <!-- Navigation-CSS -->
+    <!-- meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- //meta tags -->
+    <style>
+        @media only screen and (max-width: 600px) {
+            #favbtn {
+                display: none;
+            }
+            #livechat-compact1 {
+                display: block;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="addEdit.css" type="text/css" media="all">
+    <link rel="stylesheet" href="cahtbtn.css" type="text/css" media="all">
+
+</head>
+
+<body>
+    <div class="btn-chat" id="livechat-compact-container" style="visibility: visible; opacity: 1; display: block ">
+        <div class="btn-holder">
+            <a onclick="parent.LC_API.open_chat_window();return false;" href="chatpage.html" class="link">Live Chat</a>
+        </div>
+    </div>
+    <div class="btn-chat" id="livechat-compact1" style="visibility: visible; opacity: 1;">
+        <div class="btn-holder">
+            <a onclick="parent.LC_API.open_chat_window();return false;" href="myads.html" class="link">Favorites</a>
+        </div>
+    </div>
+    <div class="btn-chat" id="livechat-compact1" style="visibility: visible; opacity: 1;">
+        <div class="btn-holder">
+            <a onclick="parent.LC_API.open_chat_window();return false;" href="myads.html" class="link">Favorites</a>
+        </div>
+    </div>
+    <header>
+        <div class="w3ls-header">
+            <button style="float: left;" class="btn btn-success" onclick="location.href='fav.html'" id="favbtn">Favorite</button>
+            <!--header-one-->
+            <div class="w3ls-header-right">
+                <ul>
+                    <li class="dropdown head-dpdn" id="icon">
+                        <a href="/signin" aria-expanded="false">
+                            <i class="fa fa-user" aria-hidden="true"></i> Sign In</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="clearfix"> </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="logo col-md-3 ">
+                    <h1>
+                        <a href="/">
+                            <span>Baech</span>Day</a>
+                    </h1>
+                </div>
+                <div class="col-md-9 con" style="margin-top: 1.5%;padding:0px;">
+                    <input type="search" class="form-control" placeholder="Search Here...." name="searchBox" id="searchBox">
+                    <select class="" id="selectbox">
+                        <option selected value='all'>All</option>
+                        <option value="mobile">Mobiles</option>
+                        <option value="appliances">Electronics and Appliances</option>
+                        <option value="vehicles">Vehicles</option>
+                        <option value="property">Real, Estate</option>
+                    </select>
+                    <input post-w3layouts-ad type="button" onclick="searchAdd()" class="btn btn-secondary " id="searchHere" value="Search Ad">
+                    <a class="btn btn-info" id="addpostbtn" href="/postAd">Post Free Ad</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- //header -->
+    <!-- breadcrumbs -->
+    <div class="w3layouts-breadcrumbs text-center">
+        <div class="container">
+            <span class="agile-breadcrumbs">
+                <a href="/">
+                    <i class="fa fa-home home_1"></i>
+                </a>
+                <span>My Ads</span>
+            </span>
+        </div>
+    </div>
+    <!-- //breadcrumbs -->
+    <!-- Electronic appliances -->
+    <div id="addContainer">
+        <div style=" float: left;padding-left: 2%;cursor: pointer;">
+            <span onclick="off()">X</spam>
+        </div>
+        <div class="container">
+            <h2 class="w3-head">Post an Ad</h2>
+            <div class="post-ad-form">
+                <form action="JavaSCript:void(0)" onsubmit="saveChanges()" id="form123">
+                    
+                    <!-- <select style="margin-right: 50%" class="" id="selectbox">
+                        <option>Select Category</option>
+                        <option value="mobile" selected>Mobiles</option>
+                        <option value="appliances">Electronics and Appliances</option>
+                        <option value="vehicles">Vehicles</option>
+                        <option>Bikes</option>
+					  <option>Furniture</option>
+					  <option>Pets</option>
+					  <option>Books, Sports and hobbies</option>
+					  <option>Fashion</option>
+					  <option>Kids</option>
+					  <option>Services</option>
+                        <option value="property">Real, Estate</option>
+                    </select> -->
+
+                    <div class="clearfix"></div>
+
+                    <label>Ad Title
+                        <span>*</span>
+                    </label>
+                    <input id="title" type="text" name="title" class="phone" placeholder="">
+                    <div class="clearfix"></div>
+                    <label>Model
+                        <span>*</span>
+                    </label>
+                    <input id="year" type="text" class="phone" placeholder="">
+                    <div class="clearfix"></div>
+                    <label>Price
+                        <span>*</span>
+                    </label>
+                    <input id="price" style="width: 25%;" type="text" class="phone" placeholder="">
+                    <div class="clearfix"></div>
+                    <label>Ad Description
+                        <span>*</span>
+                    </label>
+                    <textarea id="desc" style="margin-right: 10%" class="mess" placeholder="Write few lines about your product"></textarea>
+                    <div class="clearfix"></div>
+                    <div align="center" id="picturediv">
+                        <img width="25%" height="25%" id="picture">
+                        <img width="25%" height="25%" id="picture1">
+                    </div>
+                    <div class="clearfix"></div>
+                    <div style="margin-top: 1%">
+                        <input type="submit" style="float: none; border-radius: 0%;margin-top: 3%" value="Save Changes">
+
+                    </div>
+
+
+
+
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="total-ads main-grid-border">
+
+        <div class="ads-grid">
+            <div class="agileinfo-ads-display col-md-9">
+                <div class="wrapper">
+                    <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                        <ul id="myTab" class="nav nav-tabs nav-tabs-responsive" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">
+                                    <span class="text">Your Ads</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                        <div id="myTabContent" class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+                                <div>
+                                    <div id="container">
+                                        <ul class="list" id="addDiv">
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    </div>
+    <!-- // Electronic appliances -->
+    <!--footer section start-->
+    <footer>
+        <div class="w3-agileits-footer-top">
+            <div class="container">
+                <div class="wthree-foo-grids">
+                    <div class="col-md-9 wthree-footer-grid">
+                        <h4 class="footer-head">About Us</h4>
+                        <p style="text-align:justify;">
+                            BaechDay.pk is a free local classifieds site. Sell anything from used cars to mobiles, furniture, laptops, clothing and more.
+                            Submit ads for free. If you want to buy something - here you will find interesting items, cheaper
+                            than in the store. Start buying and selling in the most easy way on BaechDay.pk.
+                        </p>
+                    </div>
+                    <div class="col-md-3 wthree-footer-grid right">
+                        <h4 class="footer-head">Contact Us</h4>
+                        <span class="hq">Our headquarters</span>
+                        <address>
+                            <ul class="location">
+                                <li>
+                                    <span class="glyphicon glyphicon-map-marker"></span>
+                                </li>
+                                <li>I.T Planet Head Office,Tariq Road Karachi. </li>
+                            </ul>
+                            <div class="clearfix"> </div>
+                            <ul class="location">
+                                <li>
+                                    <span class="glyphicon glyphicon-earphone"></span>
+                                </li>
+                                <li>+92-2136548</li>
+                            </ul>
+                            <div class="clearfix"> </div>
+                            <ul class="location">
+                                <li>
+                                    <span class="glyphicon glyphicon-envelope"></span>
+                                </li>
+                                <li>
+                                    <a href="info@itplanet.com">mail@itplanet.com</a>
+                                </li>
+                            </ul>
+                        </address>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="agileits-footer-bottom text-center">
+            <div class="container">
+                <div class="w3-footer-logo">
+                    <h1>
+                        <a href="index.html">
+                            <span>Baech</span>Day</a>
+                    </h1>
+                </div>
+                <div class="w3-footer-social-icons">
+                    <ul>
+                        <li>
+                            <a class="facebook" href="https://www.facebook.com/najamshehzadbutt" target="_blank">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                                <span>Facebook</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="twitter" href="https://twitter.com/NajamShehzad_B" target="_blank">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                                <span>Twitter</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="googleplus" href="https://plus.google.com/u/0/115993998049444930711" target="_blank">
+                                <i class="fa fa-google-plus" aria-hidden="true"></i>
+                                <span>Google+</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="copyrights">
+                    <p> © 2018 BachDay. All Rights Reserved | Design by
+                        <a href="https://www.facebook.com/najamshehzadbutt" target="_blank"> Najam Butt</a>
+                    </p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </footer>
+
+    <script> var url = '{{url}}'; </script>
+    <script src="javascript/logcon.js"></script>
+    <script src="javascript/myads.js"></script>
+
+</body>
+
+</html>

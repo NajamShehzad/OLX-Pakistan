@@ -17,12 +17,13 @@ function signup() {
             localStorage.setItem('token', res.headers.get('x-auth'));
             return res.json()
         }).then(user => {
-            if(user.code == 11000){
-                return    alert('Email Already in Record')
-            }else{
+            if (user.code == 11000) {
+                return alert('Email Already in Record')
+            } else {
                 document.getElementById('form1').reset();
                 console.log(user);
-                localStorage.setItem('userInfo',JSON.stringify(user))
+                localStorage.setItem('userInfo', JSON.stringify(user));
+                location.href = '/'
             }
         })
         .catch(function (err) { console.log('err', err) })
