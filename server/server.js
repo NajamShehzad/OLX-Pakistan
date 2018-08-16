@@ -9,6 +9,7 @@ var { mongoose } = require('./db/mongoose');
 var { Ads } = require('./db/models/Ads');
 const jwt = require('jsonwebtoken');
 var { Users } = require('./db/models/User');
+var { Chat } = require('./db/models/chat');
 var { authenticate } = require('./middleware/authenticate');
 const path = require('path');
 const http = require('http');
@@ -128,10 +129,10 @@ app.post('/users/login', (req, res) => {
 
 //SignOut page
 
-app.delete('/user/logout',authenticate,(req,res)=>{
-    req.user.removeToken(req.token).then(()=> {
-        res.status(200).send('Token Removed'); 
-    },() => {
+app.delete('/user/logout', authenticate, (req, res) => {
+    req.user.removeToken(req.token).then(() => {
+        res.status(200).send('Token Removed');
+    }, () => {
         res.status(400).send();
     })
 });
@@ -201,17 +202,17 @@ app.get('/addPage/:id', (req, res) => {
 //Retrive Ads In Single Page END
 
 //Fav Add/Delete For User
-app.get('/fav/:id',authenticate,(req,res)=>{
+app.get('/fav/:id', authenticate, (req, res) => {
     var id = req.params.id;
     var userID = req.user._id;
-    res.send({res:'Added'})
-    Users.update({_id:ObjectID(userID)},{$addToSet: { favorite: id  } }).then(x => {});
+    res.send({ res: 'Added' })
+    Users.update({ _id: ObjectID(userID) }, { $addToSet: { favorite: id } }).then(x => { });
 });
-app.delete('/fav/:id',authenticate,(req,res)=>{
+app.delete('/fav/:id', authenticate, (req, res) => {
     var id = req.params.id;
     var userID = req.user._id;
-    res.send({res:'Removed'})
-    Users.update({_id:ObjectID(userID)},{$pull: { favorite: id  } }).then(x => {});
+    res.send({ res: 'Removed' })
+    Users.update({ _id: ObjectID(userID) }, { $pull: { favorite: id } }).then(x => { });
 
 })
 
@@ -219,7 +220,7 @@ app.delete('/fav/:id',authenticate,(req,res)=>{
 
 //Favorite Page
 
-app.get('/favorite',(req,res)=>{
+app.get('/favorite', (req, res) => {
     res.render('fav.hbs');
 });
 app.get('/favorite/:id', (req, res) => {
@@ -329,6 +330,30 @@ app.post('/search', (req, res) => {
 
 
 //Search bar using Index text END
+
+
+//Some Serious Work On Chat
+app.get('/checkChat', authenticate, (req, res) => {
+    var data = req.body;
+    Chat.find({
+        productID:data.productID,
+        sellerID:data.sellerID,
+        buyerID:data.buyerID
+    });
+})
+
+
+
+//Some Serious Work On Chat END
+
+
+
+
+
+
+
+
+
 
 
 

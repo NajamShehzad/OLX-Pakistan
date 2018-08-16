@@ -1,6 +1,4 @@
 // var database = firebase.database();
-let myId = JSON.parse(localStorage.getItem("userID"));
-var userName1 = JSON.parse(localStorage.getItem("userName"));
 // let friendkey;
 // let friendName;
 // let userName;
@@ -89,9 +87,10 @@ function sentmsg() {
 var chatclose ;
 function showChat() {
     var addName = addUserName;
+    var myId = userData._id
  //   alert(addName);
     var id = addUserID;
-    if (myId == null) {
+    if (userData._id == null) {
         alert("Please Login To Continue");
         return false;
     }
@@ -99,7 +98,8 @@ function showChat() {
         alert("We Dont Provide Self Chating");
         return false;
     }
-
+    console.log(addUserID,userData._id);
+    
    // alert(id);
     //alert(myId);
     document.getElementById("conversationArea").innerHTML = "";
@@ -107,28 +107,34 @@ function showChat() {
     document.getElementById("chatdiv").style.display = "block"
 
     document.getElementById("friendName").innerHTML = addUserName;
-    var chatmsg = database.ref(`chat/seller/${addUserID}/${localData.addID}/${myId}`);
-    chatclose = chatmsg;
-    
-    chatmsg.on('child_added', function (data) {
-        var userinfo = data.val();
-       // console.log(data.val());
-        if (userinfo.from == myId) {
-            document.getElementById("conversationArea").innerHTML += `<li class="message right appeared">
-            <div class="text_wrapper">
-            <div class="text">${userinfo.message}</div>
-            </div>
-            </li>`
-        }
-        else{
-            document.getElementById("conversationArea").innerHTML += `<li class="message left appeared">
-            <div class="text_wrapper">
-            <div class="text">${userinfo.message}</div>
-            </div>
-            </li>`
 
-        }
-    });
+    console.log(url);
+    
+    fetch(`${url}/checkChat`)
+
+
+    // var chatmsg = database.ref(`chat/seller/${addUserID}/${localData.addID}/${myId}`);
+    // chatclose = chatmsg;
+    
+    // chatmsg.on('child_added', function (data) {
+    //     var userinfo = data.val();
+    //    // console.log(data.val());
+    //     if (userinfo.from == myId) {
+    //         document.getElementById("conversationArea").innerHTML += `<li class="message right appeared">
+    //         <div class="text_wrapper">
+    //         <div class="text">${userinfo.message}</div>
+    //         </div>
+    //         </li>`
+    //     }
+    //     else{
+    //         document.getElementById("conversationArea").innerHTML += `<li class="message left appeared">
+    //         <div class="text_wrapper">
+    //         <div class="text">${userinfo.message}</div>
+    //         </div>
+    //         </li>`
+
+    //     }
+    // });
 
 
 
