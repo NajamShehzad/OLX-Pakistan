@@ -221,7 +221,20 @@ app.delete('/fav/:id',authenticate,(req,res)=>{
 
 app.get('/favorite',(req,res)=>{
     res.render('fav.hbs');
-})
+});
+app.get('/favorite/:id', (req, res) => {
+    var id = req.params.id;
+    if (!ObjectID.isValid(id)) {
+        return res.status(404).send("id is Not Valid");
+    }
+    Ads.findOne({
+        _id: id
+    }).then((ads) => {
+        res.send(ads)
+    }, err => {
+        res.send(err);
+    });
+});
 
 //Favorite Page END
 

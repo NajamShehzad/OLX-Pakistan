@@ -30,6 +30,13 @@ if (token) {
                 }
             } catch (err) {
             }
+            try {
+                if (getAll) {
+                    userData = user.favorite;
+                    getAll();
+                }
+            } catch (err) {
+            }
         })
 
     // icon.innerHTML = `	<a href="JavaScript:void(0)" aria-expanded="false">
