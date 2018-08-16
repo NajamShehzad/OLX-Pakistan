@@ -200,6 +200,39 @@ app.get('/addPage/:id', (req, res) => {
 });
 //Retrive Ads In Single Page END
 
+//Fav Add/Delete For User
+app.get('/fav/:id',authenticate,(req,res)=>{
+    var id = req.params.id;
+    var userID = req.user._id;
+    res.send({res:'Added'})
+    Users.update({_id:ObjectID(userID)},{$addToSet: { favorite: id  } }).then(x => {});
+});
+app.delete('/fav/:id',authenticate,(req,res)=>{
+    var id = req.params.id;
+    var userID = req.user._id;
+    res.send({res:'Removed'})
+    Users.update({_id:ObjectID(userID)},{$pull: { favorite: id  } }).then(x => {});
+
+})
+
+//Fav Add/Delete For User END
+
+//Favorite Page
+
+app.get('/favorite',(req,res)=>{
+    res.render('fav.hbs');
+})
+
+//Favorite Page END
+
+
+
+
+
+
+
+
+
 //To get user Ads To Edit And Delete
 app.get('/ads', (req, res) => {
     res.render('myads.hbs');

@@ -22,7 +22,7 @@ if (addId != null) {
         .then(x => x.json())
         .then(add => {
             console.log(add);
-            
+
             addUserID = add.sellerID
             document.title = add.title;
             localData = add;
@@ -55,92 +55,67 @@ if (addId != null) {
         })
 
 }
-
-
-
-
-function addToFav() {
-    // if (logincon) {
-    //     let favoriteList = database.ref(`favorite/${userID}/${addId}`);
-    //     favoriteList.once('value', (val) => {
-    //         if (val.exists()) {
-    //             favoriteList.remove()
-    //                 .then(() => {
-    //                     favIcon.setAttribute('class', 'glyphicon glyphicon-heart-empty');
-    //                 })
-    //         }
-    //         else {
-    //             favoriteList.set({
-    //                 addId: addId
-    //             })
-    //                 .then(() => {
-    //                     favIcon.setAttribute('class', 'glyphicon glyphicon-heart');
-    //                 })
-    //         }
-    //     })
-    // }
-    // else {
-    //     alert("Please Login To Continue");
-    // }
-
-
-
-    // if (logincon) {
-    //     database.ref(`favorite/${userID}/${localData.addID}`).set(localData)
-    //     .then(x => console.log(x));
-    //     console.log("Done");
-    // }
-    // else {
-    //     alert("Please Login To Continue");
-    // }
-
-
-
-
-
-
-    // var dataToStore = JSON.parse(localStorage.getItem("addData"));
-
-    // if (dataToStore == null) {
-    //     alert("nothing is here")
-    //     var array = [];
-    //     array.push(localData);
-    //     localStorage.setItem("addData", JSON.stringify(array));
-    //     return false;
-    // }
-    // else {
-    //     var array = JSON.parse(localStorage.getItem("addData"));
-    //     // alert("its my turn");
-    //     var condition = check(localData, array);
-    //     if (condition) {
-    //         alert("Hello Jee");
-    //         array.push(localData);
-    //         console.log(array);
-    //         localStorage.setItem("addData", JSON.stringify(array));
-
-    //     }
-    //     else {
-    //         alert("Already in Your Favorite")
-    //     }
-    // }
-
+var isFav;
+function checkFav() {
+    // console.log('imhere');
+    isFav = check(addId, userData.favorite);
+    if (isFav) {
+        favIcon.setAttribute('class', 'glyphicon glyphicon-heart');
+    }
 
 
 }
 
 
-// function check(element, array) {
+function addToFav() {
 
-//     for (var i = 0; i < array.length; i++) {
-//         console.log(element.addID);
-//         if (element.addID == array[i].addID) {
-//             return false
-//             break;
-//         }
-//     }
-//     console.log("working?")
-//     return true;
-// }
+
+    if (token) {
+        if (isFav) {
+            fetch(`${url}/fav/${addId}`, {
+                headers: {
+                    'x-auth': token
+                },
+                method: 'DELETE'
+            }).then(x => { isFav = !isFav; return x.json() }).then(x => {
+                favIcon.setAttribute('class', 'glyphicon glyphicon-heart-empty');
+                console.log(x.res)
+            })
+
+        }
+        else {
+            fetch(`${url}/fav/${addId}`, {
+                headers: {
+                    'x-auth': token
+                }
+            }).then(x => { isFav = !isFav; return x.json() }).then(x => {
+                favIcon.setAttribute('class', 'glyphicon glyphicon-heart');
+                console.log(x.res)
+            })
+        }
+    }
+    else {
+        alert('Please Sign In to Continue')
+    }
+    
+
+}
+
+
+function check(id, array) {
+    console.log(array);
+    // console.log(id);
+
+    for (var i = 0; i < array.length; i++) {
+        console.log(id);
+        if (id == array[i]) {
+            return true
+            break;
+        }
+    }
+    console.log("working?")
+    return false;
+}
 
 
 

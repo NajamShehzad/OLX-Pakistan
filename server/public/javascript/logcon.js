@@ -1,6 +1,6 @@
 var token = localStorage.getItem('token');
 console.log(token);
-
+var userData;
 
 
 
@@ -11,17 +11,25 @@ if (token) {
     fetch(`${url}/users/me`,
         {
             headers: {
-                'x-auth':token
+                'x-auth': token
             }
-            
+
         }).then(function (res) {
             // localStorage.setItem('token', res.headers.get('x-auth'));
             return res.json()
         }).then(user => {
+
             console.log(user);
             icon.innerHTML = `	<a href="JavaScript:void(0)" aria-expanded="false">
         ${user.name}</a> <input type="submit" onclick="logout()" value="Sign Out" /> `;
-        var userLog = true;
+            var userLog = true;
+            try {
+                if (checkFav) {
+                    userData = user;
+                    checkFav();
+                }
+            } catch (err) {
+            }
         })
 
     // icon.innerHTML = `	<a href="JavaScript:void(0)" aria-expanded="false">
@@ -30,11 +38,11 @@ if (token) {
 
 }
 function logout() {
-   fetch(`${url}/user/logout`,{
-       headers:{
-           'x-auth':token
-       },
-       method:'DELETE'
-   }).then(x=>{console.log(x);localStorage.removeItem('token');location.href='/'}).catch(err => console.log(err)
-   );
+    fetch(`${url}/user/logout`, {
+        headers: {
+            'x-auth': token
+        },
+        method: 'DELETE'
+    }).then(x => { console.log(x); localStorage.removeItem('token'); location.href = '/' }).catch(err => console.log(err)
+    );
 }

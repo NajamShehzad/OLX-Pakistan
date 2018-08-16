@@ -36,15 +36,18 @@ var UserSchema = new mongoose.Schema({
             type: String,
             required: true
         }
-    }]
+    }],
+    favorite :{
+        type:Array,
+        default:[]
+    },
 
 });
 
 UserSchema.methods.toJSON = function () {
     var user = this;
     var userObject = user.toObject();
-
-    return _.pick(userObject, ['_id', 'email','name']);
+    return _.pick(userObject, ['_id', 'email','name','favorite']);
 };
 
 UserSchema.statics.findByToken = function (token) {

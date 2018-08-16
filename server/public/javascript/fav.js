@@ -38,22 +38,16 @@ fetch(`https://sylani-fa1f7.firebaseio.com/favorite/${userID}.json`)
 
 function addPage(addId) {
     localStorage.setItem('addId', JSON.stringify(addId));
-    location.href = "addPage.html"
+    location.href = "/addPage"
 }
-if (logincon) {
-    document.getElementById("livechat-compact").style.display = "block";
-    document.getElementById("livechat-compact-container").style.display = "block"
-}
+
 
 function searchAdd() {
     var addToSearch = document.getElementById('searchBox').value;
+    console.log(addToSearch);
     localStorage.setItem('addToSearch', JSON.stringify(addToSearch));
     var searchType = document.getElementById("selectbox").value;
     localStorage.setItem('searchType', searchType);
     console.log(addToSearch)
-
-    location.href = 'addHere.html';
-
-
-
+    location.href = '/search';
 }
