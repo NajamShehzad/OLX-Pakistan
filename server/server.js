@@ -333,13 +333,47 @@ app.post('/search', (req, res) => {
 
 
 //Some Serious Work On Chat
-app.get('/checkChat', authenticate, (req, res) => {
+app.post('/checkChat', authenticate, (req, res) => {
     var data = req.body;
+    // console.log(req.body);
     Chat.find({
         productID:data.productID,
         sellerID:data.sellerID,
         buyerID:data.buyerID
+    }).then((chat) => {
+        // console.log(ads);
+        if(chat.length < 1){
+        return res.send({exist:false})
+        }
+        res.send({chat,exist:true})
+    }, err => {
+        res.send(err);
     });
+});
+app.post('/createChat', authenticate, (req, res) => {
+    var data = req.body;
+    // console.log(req.body);
+    var chat = new Chat(req.body);
+    chat.save().then(data =>{
+        res.send(data)
+    }).catch(err => {
+        console.log('Something went wrong',err);
+        
+        res.send(err);
+    })
+    // Chat.find({
+    //     productID:data.productID,
+    //     sellerID:data.sellerID,
+    //     buyerID:data.buyerID
+    // }).then((ads) => {
+    //     // console.log(ads);
+    //     if(ads.length < 1){
+    //     return res.send({exist:false})
+    //     }
+    //     res.send(ads)
+    // }, err => {
+    //     res.send(err);
+    // });
 })
 
 

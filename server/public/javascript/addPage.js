@@ -18,11 +18,12 @@ if (addId != null) {
     var favIcon = document.getElementById('favIcon');
 
     var database = firebase.database();
+    var  productID;
     fetch(`${url}/addPage/${addId}`)
         .then(x => x.json())
         .then(add => {
             console.log(add);
-
+            productID = add._id
             addUserID = add.sellerID
             document.title = add.title;
             localData = add;

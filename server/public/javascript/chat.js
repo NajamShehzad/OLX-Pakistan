@@ -30,19 +30,19 @@
 
 
 function sentmsg() {
-    if(document.getElementById("message").value == ""){
+    if (document.getElementById("message").value == "") {
         alert("Write Some Thing");
         return false;
     }
     let msg = document.getElementById("message").value;
     document.getElementById("message").value = "";
-   // console.log(friendkey);
-   let notifcation = database.ref(`chat/notification/`).push();
+    // console.log(friendkey);
+    let notifcation = database.ref(`chat/notification/`).push();
     notifcation.set({
         userName: userName1,
         message: msg,
         from: userID,
-        to:addUserID,
+        to: addUserID,
         time: (new Date()).toLocaleTimeString()
 
     });
@@ -72,35 +72,35 @@ function sentmsg() {
 
     });
     let chatFriend = database.ref(`chat/buyer/${myId}/${localData.addID}`).set({
-        addID:localData.addID,
-        userID:addUserID,
-        userName:addUserName,
-        addName:localData.title
+        addID: localData.addID,
+        userID: addUserID,
+        userName: addUserName,
+        addName: localData.title
     }
     );
-    
+
 
 
 
 }
 
-var chatclose ;
+var chatclose;
 function showChat() {
     var addName = addUserName;
     var myId = userData._id
- //   alert(addName);
+    //   alert(addName);
     var id = addUserID;
     if (userData._id == null) {
         alert("Please Login To Continue");
         return false;
     }
-    if(myId == addUserID){
+    if (myId == addUserID) {
         alert("We Dont Provide Self Chating");
         return false;
     }
-    console.log(addUserID,userData._id);
-    
-   // alert(id);
+    console.log(addUserID, userData._id);
+
+    // alert(id);
     //alert(myId);
     document.getElementById("conversationArea").innerHTML = "";
     console.log(friendName);
@@ -109,13 +109,51 @@ function showChat() {
     document.getElementById("friendName").innerHTML = addUserName;
 
     console.log(url);
-    
-    fetch(`${url}/checkChat`)
+    var item = {
+        productID: productID,
+        sellerID: addUserID,
+        buyerID: userData._id
+    }
+    fetch(`${url}/checkChat`, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'x-auth': token
+        },
+        method: "POST",
+        body: JSON.stringify(item)
+    }).then(x => x.json()).then(x => {
+        console.log(x);
+        if (!x.exist) {
+            console.log('Do Something');
+            var ChatItem = {
+                productID: productID,
+                productName:localData.title,
+                sellerID: addUserID,
+                sellerName:localData.userName,
+                buyerID: userData._id,
+                buyerName:userData.name,
+            }
+            console.log(ChatItem);
+            
+            fetch(`${url}/createChat`, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'x-auth': token
+                },
+                method: "POST",
+                body: JSON.stringify(ChatItem)
+            }).then(x => x.json()).then(x => console.log(x));
+        }
+
+        console.log(x)
+    });
 
 
     // var chatmsg = database.ref(`chat/seller/${addUserID}/${localData.addID}/${myId}`);
     // chatclose = chatmsg;
-    
+
     // chatmsg.on('child_added', function (data) {
     //     var userinfo = data.val();
     //    // console.log(data.val());
