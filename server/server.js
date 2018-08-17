@@ -337,15 +337,15 @@ app.post('/checkChat', authenticate, (req, res) => {
     var data = req.body;
     // console.log(req.body);
     Chat.find({
-        productID:data.productID,
-        sellerID:data.sellerID,
-        buyerID:data.buyerID
+        productID: data.productID,
+        sellerID: data.sellerID,
+        buyerID: data.buyerID
     }).then((chat) => {
         // console.log(ads);
-        if(chat.length < 1){
-        return res.send({exist:false})
+        if (chat.length < 1) {
+            return res.send({ exist: false })
         }
-        res.send({chat,exist:true})
+        res.send({ chat, exist: true })
     }, err => {
         res.send(err);
     });
@@ -354,18 +354,34 @@ app.post('/createChat', authenticate, (req, res) => {
     var data = req.body;
     // console.log(req.body);
     var chat = new Chat(req.body);
-    chat.save().then(data =>{
+    chat.save().then(data => {
         res.send(data)
     }).catch(err => {
-        console.log('Something went wrong',err);
-        
+        console.log('Something went wrong', err);
+
         res.send(err);
     })
 })
 //Resive Messages Using IO
+app.post('/chatMsg', authenticate, (req, res) => {
+    console.log(req.body);
+    var _id = req.body._id
+    Chat.findById(_id).then(x => {
+        var msg = { from: req.body.from, msg: req.body.msg };
+        x.chat.push(msg)
+        console.log(x.chat);
+        var body = x;
+        Chat.findByIdAndUpdate(_id, { $set: body }, { new: true }).then(x => {
+            io.emit(x._id,msg);
+            console.log(x)
+        });
+
+
+    });
+})
 io.on('connection', () => {
     console.log('Connected');
-    
+
 })
 
 

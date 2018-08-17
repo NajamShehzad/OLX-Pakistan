@@ -4,6 +4,8 @@ socket.on('connect', () => {
 });
 
 var chatID;
+var from;
+var myId;
 
 // var database = firebase.database();
 // let friendkey;
@@ -43,58 +45,22 @@ function sentmsg() {
     }
     let msg = document.getElementById("message").value;
     document.getElementById("message").value = "";
-    // console.log(friendkey);
-    let notifcation = database.ref(`chat/notification/`).push();
-    notifcation.set({
-        userName: userName1,
-        message: msg,
-        from: userID,
-        to: addUserID,
-        time: (new Date()).toLocaleTimeString()
-
-    });
-    // let chatSeen = database.ref(`chat/message/${myId}/${addUserID}`);
-    // chatSeen.set({
-    //     userName: userName,
-    //     message: msg,
-    //     from: userID,
-    //     time: (new Date()).toLocaleTimeString()
-
-    // });
-    // let chatFriendSeen = database.ref(`chat/message/${addUserID}/${myId}`);
-    // chatFriendSeen.set({
-    //     userName: userName,
-    //     message: msg,
-    //     from: userID,
-    //     time: (new Date()).toLocaleTimeString()
-
-    // });
-    console.log(addUserID);
-    let chat = database.ref(`chat/seller/${addUserID}/${localData.addID}/${myId}`).push();
-    chat.set({
-        userName: userName,
-        message: msg,
-        from: userID,
-        time: (new Date()).toLocaleTimeString()
-
-    });
-    let chatFriend = database.ref(`chat/buyer/${myId}/${localData.addID}`).set({
-        addID: localData.addID,
-        userID: addUserID,
-        userName: addUserName,
-        addName: localData.title
-    }
-    );
-
-
-
-
+    var text = { msg, _id: chatID, from };
+    fetch(`${url}/chatMsg`, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'x-auth': token
+        },
+        method: "POST",
+        body: JSON.stringify(text)
+    })
 }
 
 var chatclose;
 function showChat() {
     var addName = addUserName;
-    var myId = userData._id
+    myId = userData._id
     //   alert(addName);
     var id = addUserID;
     if (userData._id == null) {
@@ -154,52 +120,58 @@ function showChat() {
             }).then(x => x.json()).then(x => {
                 console.log(x.chat)
                 chatID = x.chat[0]._id;
+                from = userData._id;
             });
         }
 
-        console.log(x.chat[0]._id);
+        console.log(x.chat[0].chat);
         chatID = x.chat[0]._id;
+        from = userData._id;
+        x.chat[0].chat.map(text => {
+            if (text.from == myId) {
+                document.getElementById("conversationArea").innerHTML += `<li class="message right appeared">
+                        <div class="text_wrapper">
+                        <div class="text">${text.msg}</div>
+                        </div>
+                        </li>`
+            }
+            else {
+                document.getElementById("conversationArea").innerHTML += `<li class="message left appeared">
+                        <div class="text_wrapper">
+                        <div class="text">${text.msg}</div>
+                        </div>
+                        </li>`
+
+            }
+
+        });
+        socket.on(chatID, (text) => {
+            console.log('Connected Chat Live',text);
+            if (text.from == myId) {
+                document.getElementById("conversationArea").innerHTML += `<li class="message right appeared">
+                        <div class="text_wrapper">
+                        <div class="text">${text.msg}</div>
+                        </div>
+                        </li>`
+            }
+            else {
+                document.getElementById("conversationArea").innerHTML += `<li class="message left appeared">
+                        <div class="text_wrapper">
+                        <div class="text">${text.msg}</div>
+                        </div>
+                        </li>`
+
+            }
+        });
 
     });
-
-
-    // var chatmsg = database.ref(`chat/seller/${addUserID}/${localData.addID}/${myId}`);
-    // chatclose = chatmsg;
-
-    // chatmsg.on('child_added', function (data) {
-    //     var userinfo = data.val();
-    //    // console.log(data.val());
-    //     if (userinfo.from == myId) {
-    //         document.getElementById("conversationArea").innerHTML += `<li class="message right appeared">
-    //         <div class="text_wrapper">
-    //         <div class="text">${userinfo.message}</div>
-    //         </div>
-    //         </li>`
-    //     }
-    //     else{
-    //         document.getElementById("conversationArea").innerHTML += `<li class="message left appeared">
-    //         <div class="text_wrapper">
-    //         <div class="text">${userinfo.message}</div>
-    //         </div>
-    //         </li>`
-
-    //     }
-    // });
-
-
-
-
 
 }
 
 function off() {
     console.log(addUserID)
-    // var chatmsg = database.ref(`chat/conversation/${myId}/${addUserID}`);
-    // chatmsg.off('child_added');
-    chatclose.off("child_added");
+    socket.off(chatID);
 
-
-    // chatmsg.on('child_added', function (data) {});
     document.getElementById("conversationArea").innerHTML = "";
 
     document.getElementById("chatdiv").style.display = "none"
