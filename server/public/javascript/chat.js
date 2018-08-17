@@ -1,3 +1,10 @@
+var socket = io();
+socket.on('connect', () => {
+    console.log('Connected to server');
+});
+
+var chatID;
+
 // var database = firebase.database();
 // let friendkey;
 // let friendName;
@@ -128,14 +135,14 @@ function showChat() {
             console.log('Do Something');
             var ChatItem = {
                 productID: productID,
-                productName:localData.title,
+                productName: localData.title,
                 sellerID: addUserID,
-                sellerName:localData.userName,
+                sellerName: localData.userName,
                 buyerID: userData._id,
-                buyerName:userData.name,
+                buyerName: userData.name,
             }
             console.log(ChatItem);
-            
+
             fetch(`${url}/createChat`, {
                 headers: {
                     'Accept': 'application/json',
@@ -144,10 +151,15 @@ function showChat() {
                 },
                 method: "POST",
                 body: JSON.stringify(ChatItem)
-            }).then(x => x.json()).then(x => console.log(x));
+            }).then(x => x.json()).then(x => {
+                console.log(x.chat)
+                chatID = x.chat[0]._id;
+            });
         }
 
-        console.log(x)
+        console.log(x.chat[0]._id);
+        chatID = x.chat[0]._id;
+
     });
 
 

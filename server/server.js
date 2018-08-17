@@ -154,7 +154,7 @@ app.post('/postAd', authenticate, (req, res) => {
 
     var ad = new Ads(body);
     ad.save().then(doc => {
-        console.log("Sucessfull :", doc);
+        // console.log("Sucessfull :", doc);
         res.send(doc)
     }, err => {
         console.log("Something Went Wrong :", err);
@@ -321,7 +321,7 @@ app.get('/search', (req, res) => {
     res.render('search.hbs');
 });
 app.post('/search', (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     var item = req.body.item
     Ads.find({ $text: { $search: item } })
         .then(data => res.send(data));
@@ -361,21 +361,12 @@ app.post('/createChat', authenticate, (req, res) => {
         
         res.send(err);
     })
-    // Chat.find({
-    //     productID:data.productID,
-    //     sellerID:data.sellerID,
-    //     buyerID:data.buyerID
-    // }).then((ads) => {
-    //     // console.log(ads);
-    //     if(ads.length < 1){
-    //     return res.send({exist:false})
-    //     }
-    //     res.send(ads)
-    // }, err => {
-    //     res.send(err);
-    // });
 })
-
+//Resive Messages Using IO
+io.on('connection', () => {
+    console.log('Connected');
+    
+})
 
 
 //Some Serious Work On Chat END
