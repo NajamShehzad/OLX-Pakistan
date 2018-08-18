@@ -1,7 +1,7 @@
 var database = firebase.database();
 let friendkey;
 let friendName;
-var  myId;
+var myId;
 var socket = io();
 
 socket.on('connect', () => {
@@ -26,11 +26,11 @@ function getList() {
         buyerList = x.buyer;
         sellerList = x.seller;
         sellerList.map(user => {
-            var row = `<a href="JavaScript:void(0)"  class="list-group-item list-group-item-action" onclick="showChat('${user._id}','${user.buyerName}',this)">${user.buyerName}(${user.productName})<a/>`
+            var row = `<a href="JavaScript:void(0)"  class="list-group-item list-group-item-action" onclick="showChat('${user._id}','${user.buyerID}','${user.buyerName}',this)">${user.buyerName}(${user.productName})<a/>`
             document.getElementById("userlist1").innerHTML += row;
         });
         buyerList.map(user => {
-            var row = `<a href="JavaScript:void(0)"  class="list-group-item list-group-item-action" onclick="showChat('${user._id}','${user.sellerName}',this)">${user.sellerName}(${user.productName})<a/>`
+            var row = `<a href="JavaScript:void(0)"  class="list-group-item list-group-item-action" onclick="showChat('${user._id}','${user.sellerID}','${user.sellerName}',this)">${user.sellerName}(${user.productName})<a/>`
             document.getElementById("userlist").innerHTML += row;
         });
 
@@ -61,7 +61,18 @@ function sentmsg() {
         },
         method: "POST",
         body: JSON.stringify(text)
-    }).then(x => x.json()).then(x => console.log(x.code));
+    }).then(x => x.json()).then(x => {
+        console.log(x.code)
+        let notifcation = database.ref(`chat/notification/`).push();
+        notifcation.set({
+            userName: userData.name,
+            message: msg,
+            from: userData._id,
+            to:friendkey,
+            time: (new Date()).toLocaleTimeString()
+    
+        });
+    });
 
 }
 
@@ -91,7 +102,8 @@ function closeAddChat() {
 
 var currentChat;
 function showChat(chatID, friendId, friendInfo) {
-
+    console.log(friendId,friendInfo);
+    
     console.log(chatID);
     myId = userData._id;
 
@@ -105,7 +117,7 @@ function showChat(chatID, friendId, friendInfo) {
     //console.log(friendkey);
     document.getElementById("chatdiv").style.display = "block"
     document.getElementById("maindiv").style.opacity = ".3"
-    document.getElementById("friendName").innerHTML = friendName;
+    document.getElementById("friendName").innerHTML = friendInfo;
 
     fetch(`${url}/getChat`, {
         headers: {

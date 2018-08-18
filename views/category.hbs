@@ -5,22 +5,14 @@
 	<title>BaechDay | MOBILES </title>
 	<link rel="stylesheet" href="css/font-awesome.min.css" />
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<!-- bootstrap-CSS -->
-	{{!--
-	<link rel="stylesheet" href="css/bootstrap-select.css"> --}}
-	<!-- bootstrap-select-CSS -->
+	
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-	<!-- style.css -->
-
-	<!-- Navigation-CSS -->
-	<!-- meta tags -->
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> {{!--
-	<script src="js/bootstrap.js"></script>
-	<script src="js/bootstrap-select.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 	
 
 
-	<script src="js/tabs.js"></script> --}}
+	
 	<link rel="stylesheet" href="cahtbtn.css" type="text/css" media="all">
 	<style>
 		#favbtn {
@@ -49,30 +41,30 @@
 		}
 	</style>
 
-	<!-- //switcher-grid and list alignment -->
+	
 </head>
 
 <body>
 	<div class="btn-chat" id="livechat-compact-container" style="visibility: visible; opacity: 1;">
 		<div class="btn-holder">
-			<a onclick="parent.LC_API.open_chat_window();return false;" href="chatpage.html" class="link">Live Chat</a>
+			<a onclick="parent.LC_API.open_chat_window();return false;" href="/chat" class="link">Live Chat</a>
 		</div>
 	</div>
 	<div class="btn-chat" id="livechat-compact" style="visibility: visible; opacity: 1;">
 		<div class="btn-holder">
-			<a onclick="parent.LC_API.open_chat_window();return false;" href="myads.html" class="link"> Your Ads</a>
+			<a onclick="parent.LC_API.open_chat_window();return false;" href="/ads" class="link"> Your Ads</a>
 		</div>
 	</div>
 	<div class="btn-chat" id="livechat-compact1" style="visibility: visible; opacity: 1;">
 		<div class="btn-holder">
-			<a onclick="parent.LC_API.open_chat_window();return false;" href="myads.html" class="link">Favorites</a>
+			<a onclick="parent.LC_API.open_chat_window();return false;" href="/favorite" class="link">Favorites</a>
 		</div>
 	</div>
 	<!-- //Navigation -->
 	<!-- header -->
 	<header>
 		<div class="w3ls-header">
-			<button style="float: left;" class="btn btn-success" onclick="location.href='fav.html'" id="favbtn">Favorite</button>
+			<button style="float: left;" class="btn btn-success" onclick="location.href='/favorite'" id="favbtn">Favorite</button>
 			<!--header-one-->
 			<div class="w3ls-header-right">
 				<ul>
@@ -219,7 +211,7 @@
 			<div class="container">
 				<div class="w3-footer-logo">
 					<h1>
-						<a href="index.html">
+						<a href="/">
 							<span>Baech</span>Day</a>
 					</h1>
 				</div>

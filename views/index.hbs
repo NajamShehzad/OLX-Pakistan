@@ -5,7 +5,7 @@
 	<title> BaechDay| HOME </title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<!-- bootstrap-CSS -->
-	{{!-- <link rel="stylesheet" href="css/bootstrap-select.css"> --}}
+	
 	<link rel="icon" type="image/gif" href="icon.png" />
 	<!-- bootstrap-select-CSS -->
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -40,17 +40,17 @@
 	<!-- Live Chat And Your Ads Button -->
 	<div class="btn-chat" id="livechat-compact-container" style="visibility: visible; opacity: 1;">
 		<div class="btn-holder">
-			<a onclick="parent.LC_API.open_chat_window();return false;" href="chatpage.html" class="link">Live Chat</a>
+			<a onclick="parent.LC_API.open_chat_window();return false;" href="/chat" class="link">Live Chat</a>
 		</div>
 	</div>
 	<div class="btn-chat" id="livechat-compact" style="visibility: visible; opacity: 1;">
 		<div class="btn-holder">
-			<a onclick="parent.LC_API.open_chat_window();return false;" href="myads.html" class="link"> Your Ads</a>
+			<a onclick="parent.LC_API.open_chat_window();return false;" href="/ads" class="link"> Your Ads</a>
 		</div>
 	</div>
 	<div class="btn-chat" id="livechat-compact1" style="visibility: visible; opacity: 1;">
 		<div class="btn-holder">
-			<a onclick="parent.LC_API.open_chat_window();return false;" href="fav.html" class="link">Favorites</a>
+			<a onclick="parent.LC_API.open_chat_window();return false;" href="/favorite" class="link">Favorites</a>
 		</div>
 	</div>
 
@@ -70,7 +70,7 @@
 	<!-- header -->
 	<header>
 		<div class="w3ls-header">
-			<button style="float: left;" class="btn btn-success" onclick="location.href='fav.html'" id="favbtn">Favorite</button>
+			<button style="float: left;" class="btn btn-success" onclick="location.href='/favorite'" id="favbtn">Favorite</button>
 			<!--header-one-->
 			<div class="w3ls-header-right">
 				<ul>
@@ -277,7 +277,7 @@
 				<div class="container">
 					<div class="w3-footer-logo">
 						<h1>
-							<a href="index.html">
+							<a href="/">
 								<span>Baech</span>Day</a>
 						</h1>
 					</div>
@@ -314,35 +314,12 @@
 			</div>
 		</footer>
 		<!--footer section end-->
-		<!-- Navigation-Js-->
-		<!-- <script type="text/javascript" src="js/main.js"></script>
-		<script type="text/javascript" src="js/classie.js"></script> -->
-		<!-- //Navigation-Js-->
-		<!-- js -->
-		{{!-- <script type="text/javascript" src="js/jquery.min.js"></script> --}}
-		<!-- js -->
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		{{!-- <script src="js/bootstrap.js"></script>
-		<script src="js/bootstrap-select.js"></script> --}}
-		<!-- <script src="js/responsiveslides.min.js"></script> -->
-		<!-- <script>
-			$(function () {
-				$("#slider").responsiveSlides({
-					auto: true,
-					pager: false,
-					nav: true,
-					speed: 500,
-					maxwidth: 800,
-					namespace: "large-btns"
-				});
-
-			});
-		</script> -->
+		
 		<script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
 		<script src="javascript/firebase-config.js"></script>
 		<script> var url = '{{url}}'; </script>
-		<script src="javascript/index.js"></script>
 		<script src="javascript/logcon.js"></script> 
+		<script src="javascript/index.js"></script>
 </body>
 
 </html>

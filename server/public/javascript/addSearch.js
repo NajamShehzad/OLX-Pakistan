@@ -69,6 +69,10 @@ function searchAdd() {
 
 
 }
+if(token){
+    document.getElementById("livechat-compact").style.display = "block";
+    document.getElementById("livechat-compact-container").style.display = "block"
+}
 
 function addPage(addId) {
     localStorage.setItem('addId', JSON.stringify(addId));

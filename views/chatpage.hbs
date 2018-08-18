@@ -2,17 +2,31 @@
 <html lang="en">
 
 <head>
-    <title> BaechDay | Post Ad </title>
+    <title>BaechDay | Chat Page </title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
- 
+    <!-- bootstrap-CSS -->
+    <!-- bootstrap-select-CSS -->
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!-- style.css -->
     <link rel="stylesheet" href="css/font-awesome.min.css" />
-    
+    <!-- fontawesome-CSS -->
+    <!-- <link rel="stylesheet" href="css/menu_sideslide.css" type="text/css" media="all"> -->
+    <!-- Navigation-CSS -->
+    <!-- meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <style>
         #favbtn {
             padding: 3px 6px;
             background-color: #15c01c;
+        }
+
+        #sentbtn {
+            width: 20%;
+        }
+
+        #inputfield {
+            width: 80%;
         }
 
         @media only screen and (max-width: 600px) {
@@ -20,20 +34,76 @@
                 display: none;
             }
         }
-    </style>
 
+        @media only screen and (max-width: 600px) {
+            #favbtn {
+                display: none;
+            }
+
+        }
+
+        #listof {
+            display: flex
+        }
+
+        @media only screen and (max-width: 770px) {
+            #listof {
+                display: block;
+            }
+        }
+
+        #addChat {
+            width: 70%;
+            height: 80%;
+            text-align: center;
+            margin: auto auto;
+
+            position: fixed;
+            background-color: white;
+
+            bottom: 10;
+            z-index: 11111;
+            display: none;
+            border: 2px solid red;
+            left: 15%;
+            top: 10%
+        }
+    </style>
+    <link rel="stylesheet" href="chat.css" />
+    <link rel="stylesheet" href="chatbox.css" />
 </head>
 
 <body>
-    
+    <div id="addChat">
+        <div style=" float: left;padding-left: 2%;cursor: pointer;">
+            <span onclick="offshow()">X</spam>
+        </div>
+        <div class="container" style="width: 100%" id="addChatDiv">
+            <h2 class="w3-head" id="addName">Post an Ad</h2>
+            <div id="maindiv" class="  ">
+
+                <div id="addUserList" class=" ">
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+        </div>
+    </div>
+
     <header>
         <div class="w3ls-header">
-            <button style="float: left;" onclick="location.href='/favorite'" id="favbtn">Favorite</button>
+            <button style="float: left;" onclick="location.href='fav.html'" id="favbtn">Favorite</button>
             <!--header-one-->
             <div class="w3ls-header-right">
                 <ul>
                     <li class="dropdown head-dpdn" id="icon">
-                        <a href="signin.html" aria-expanded="false">
+                        <a href="/signin" aria-expanded="false">
                             <i class="fa fa-user" aria-hidden="true"></i> Sign In</a>
                     </li>
                 </ul>
@@ -54,92 +124,89 @@
         </div>
     </header>
     <!-- //header -->
-
-    <!-- //header -->
-    <!-- sign up form -->
-    <div class="submit-ad main-grid-border">
+    <!-- breadcrumbs -->
+    <div class="w3layouts-breadcrumbs text-center">
         <div class="container">
-            <h2 class="w3-head">Post an Ad</h2>
-            <div class="post-ad-form">
-                <form action="JavaSCript:void(0)" onsubmit="postadd()" id="form123">
-                    <label>Select Category
-                        <span>*</span>
-                    </label>
-                    <select class="" id="selectbox">
-                        <option>Select Category</option>
-                        <option value="mobile" selected>Mobiles</option>
-                        <option value="appliances">Electronics and Appliances</option>
-                        <option value="vehicles">Vehicles</option>
-                        <!-- <option>Bikes</option>
-					  <option>Furniture</option>
-					  <option>Pets</option>
-					  <option>Books, Sports and hobbies</option>
-					  <option>Fashion</option>
-					  <option>Kids</option>
-					  <option>Services</option> -->
-                        <option value="property">Real, Estate</option>
-                    </select>
+            <span class="agile-breadcrumbs">
+                <a href="/">
+                    <i class="fa fa-home home_1"></i>
+                </a> /
+                <span>Chat Zone</span>
+            </span>
+        </div>
+    </div>
+    <!-- //breadcrumbs -->
+    <!-- Electronic appliances-->
+    <div class="clearfix"></div>
+    <div class="text-center" style="padding-top: 10px;">
 
-                    <div class="clearfix"></div>
 
-                    <label>Ad Title
-                        <span>*</span>
-                    </label>
-                    <input id="title" type="text" class="phone" placeholder="" required="required" >
-                    <div class="clearfix"></div>
-                    <label>Model
-                        <span>*</span>
-                    </label>
-                    <input id="year" type="text" class="phone" placeholder="" required="required">
-                    <div class="clearfix"></div>
-                    <label>Price
-                        <span>*</span>
-                    </label>
-                    <input id="price" style="width: 25%;" type="text" class="phone" placeholder="" required="required">
-                    <div class="clearfix"></div>
-                    <label>Mobile Number
-                        <span>*</span>
-                    </label>
-                    <input id="mobile" style="width: 25%;" type="text" class="phone" placeholder="" required="required">
-                    <div class="clearfix"></div>
-                    <label>Ad Description
-                        <span>*</span>
-                    </label>
-                    <textarea id="desc" class="mess" placeholder="Write few lines about your product" required="required"></textarea>
-                    <div class="clearfix"></div>
-                    <div align="center" id="picturediv">
-                        <img width="25%" height="25%" id="picture">
-                        <img width="25%" height="25%" id="picture1">
+        <div id="chatdiv" class="text-center">
+            <div class="chat_window">
+                <div class="top_menu">
+                    <div id="titleChat" class="buttons">
+                        <div class="button close" style="padding: 2px 0px;padding-bottom: 20px;border: none" id="closeButton" onclick="off()">X</div>
                     </div>
-                    <div class="clearfix"></div>
-                    <label>Photos for your ad :</label>
-                    <div style="margin-top: 1%">
-                        <input type="file" accept="image/*" id="upload" />
-                        <input type="submit" style="float: none; border-radius: 0%;margin-top: 3%" value="Post">
+                    <div class="title" id="friendName">Chat</div>
+                </div>
+                <ul id="conversationArea" class="messages">
 
-                    </div>
+                </ul>
+                <div class="bottom_wrapper clearfix">
+                    <form id="form1" action="JavaScript:void(0)" onsubmit="sentmsg()">
+                        <div class="message_input_wrapper" id="inputfield">
+                            <input id="message" style="width: 90%" class="message_input" placeholder="Type your message here.." />
+                        </div>
+                        <div class="send_message" onclick="sentmsg()" id="sentbtn">
+                            <div class="icon"></div>
+                            <div class="text">Send</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="listof">
+
+            <div id="maindiv" class=" col-sm-6 ">
+
+                <div id="userlist" class=" ">
+                    <a id="name" href="JavaSCript:void(0)" class="list-group-item list-group-item-action active">
+                        Chat With Seller
+                    </a>
+
+                </div>
 
 
 
+            </div>
+            <div id="maindiv1" class=" col-sm-6 ">
+
+                <div id="userlist1" class=" ">
+                    <a id="name1" href="JavaSCript:void(0)" class="list-group-item list-group-item-action active">
+                        Response To Buyers
+                    </a>
+
+                </div>
 
 
 
-                </form>
             </div>
         </div>
     </div>
-    <!-- //sign up form -->
+    <div class="clearfix"></div>
     <!--footer section start-->
+    <div class="clearfix"></div>
     <footer>
         <div class="w3-agileits-footer-top">
             <div class="container">
                 <div class="wthree-foo-grids">
                     <div class="col-md-9 wthree-footer-grid">
-                        <h4 class="footer-head">About Us</h4>
+                        <h4 class="footer-head">What is Classified Advertising</h4>
                         <p style="text-align:justify;">
-                            BaechDay.pk is a free local classifieds site. Sell anything from used cars to mobiles, furniture, laptops, clothing and more.
-                            Submit ads for free. If you want to buy something - here you will find interesting items, cheaper
-                            than in the store. Start buying and selling in the most easy way on BaechDay.pk.
+                            Classified advertising is a form of advertising which is particularly common in newspapers, online and other periodicals
+                            which may be sold or distributed free of charge. Classified advertisements are much cheaper than
+                            larger display advertisements used by businesses, although display advertising is more widespread.
                         </p>
                     </div>
                     <div class="col-md-3 wthree-footer-grid right">
@@ -178,7 +245,7 @@
             <div class="container">
                 <div class="w3-footer-logo">
                     <h1>
-                        <a href="index.html">
+                        <a href="/">
                             <span>Baech</span>Day</a>
                     </h1>
                 </div>
@@ -214,13 +281,20 @@
             </div>
         </div>
     </footer>
-    <!--footer section end-->
+
     <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
-    <script src="javascript/firebase-config.js">
-    </script>
-	<script>var url = '{{url}}';</script>
-    <script src="javascript/postadd.js"></script>
+    <script src="javascript/firebase-config.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>var url = '{{url}}';</script>
     <script src="javascript/logcon.js"></script>
+    <!-- <script src="javascript/addPage.js"></script> -->
+    <script src="javascript/chatpage.js"></script>
+    <style>
+        .detail {
+            font-size: 200%
+        }
+    </style>
+
 </body>
 
 </html>

@@ -170,7 +170,10 @@ function addPage(addId) {
 //     document.getElementById("livechat-compact").style.display = "block";
 //     document.getElementById("livechat-compact-container").style.display = "block"
 // }
-
+if(token){
+    document.getElementById("livechat-compact").style.display = "block";
+    document.getElementById("livechat-compact-container").style.display = "block"
+}
 function searchAdd() {
     var addToSearch = document.getElementById('searchBox').value;
     console.log(addToSearch);

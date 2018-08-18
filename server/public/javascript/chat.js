@@ -24,7 +24,18 @@ function sentmsg() {
         },
         method: "POST",
         body: JSON.stringify(text)
-    }).then(x => x.json()).then(x => console.log(x.code));
+    }).then(x => x.json()).then(x => {
+        console.log(x.code);
+        let notifcation = database.ref(`chat/notification/`).push();
+        notifcation.set({
+            userName: userData.name,
+            message: msg,
+            from: userData._id,
+            to:addUserID,
+            time: (new Date()).toLocaleTimeString()
+    
+        });
+    });
 }
 
 var chatclose;
@@ -92,7 +103,7 @@ function showChat() {
                 chatID = x._id;
                 from = userData._id;
                 socket.on(chatID, (text) => {
-                    console.log('Connected Chat Live',text);
+                    console.log('Connected Chat Live', text);
                     if (text.from == myId) {
                         document.getElementById("conversationArea").innerHTML += `<li class="message right appeared">
                                 <div class="text_wrapper">
@@ -106,10 +117,10 @@ function showChat() {
                                 <div class="text">${text.msg}</div>
                                 </div>
                                 </li>`
-        
+
                     }
                 });
-                
+
             });
             return true;
         }
@@ -136,7 +147,7 @@ function showChat() {
 
         });
         socket.on(chatID, (text) => {
-            console.log('Connected Chat Live',text);
+            console.log('Connected Chat Live', text);
             if (text.from == myId) {
                 document.getElementById("conversationArea").innerHTML += `<li class="message right appeared">
                         <div class="text_wrapper">

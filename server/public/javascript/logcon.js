@@ -44,6 +44,13 @@ if (token) {
                 }
             } catch (err) {
             }
+            try {
+                if (firebaseMessage) {
+                    userData = user;
+                    firebaseMessage()
+                }
+            } catch (err) {
+            }
         })
 
     // icon.innerHTML = `	<a href="JavaScript:void(0)" aria-expanded="false">

@@ -5,19 +5,15 @@
 //             .catch(err => console.log(err));
 //     })
 // }
-// const firebase_messaging = firebase.messaging();
-// let database = firebase.database();
+const firebase_messaging = firebase.messaging();
+let database = firebase.database();
 var div = document.getElementById("mobile");
 var divCar = document.getElementById("car");
 var property = document.getElementById("property");
 var appliances = document.getElementById("appliances")
 var notificationToken = JSON.parse(localStorage.getItem('notification'));
-// var div1 = document.getElementById("addcol");
 var icon = document.getElementById("loginIcon");
-// var logincon = JSON.parse(localStorage.getItem("userLogin"));
-// var userID = JSON.parse(localStorage.getItem("userID"));
-// fetch("https://sylani-fa1f7.firebaseio.com/adds/676716add.json")
-// .then(x => x.json()).then(x => console.log(x));
+
 
 
 fetch(`${url}/data`)
@@ -79,18 +75,37 @@ fetch(`${url}/data`)
 
 
 
-function categorypage(category){
-    localStorage.setItem('category',category);
-    location.href="/category"
+function categorypage(category) {
+    localStorage.setItem('category', category);
+    location.href = "/category"
+}
+
+
+function firebaseMessage() {
+    firebase_messaging.requestPermission()
+        .then(() => handeleTokenRefresh())
+        .catch((err) => console.log('user didnt give permission', err));
+
+    function handeleTokenRefresh() {
+
+        return firebase_messaging.getToken()
+            .then(token => {
+                console.log(token);
+                database.ref(`tokens/${userData._id}`).set({
+                    token: token,
+                });
+            });
+
+    }
 }
 
 
 
 
-
-
-
-
+if(token){
+    document.getElementById("livechat-compact").style.display = "block";
+    document.getElementById("livechat-compact-container").style.display = "block"
+}
 
 
 
@@ -135,7 +150,7 @@ function searchAdd() {
     var searchType = document.getElementById("selectbox").value;
     localStorage.setItem('searchType', searchType);
     console.log(addToSearch)
-    location.href ='/search';
+    location.href = '/search';
 }
 
 // let data1 = database.ref(`adds`).orderByChild('category').equalTo('mobile').limitToFirst(4);
