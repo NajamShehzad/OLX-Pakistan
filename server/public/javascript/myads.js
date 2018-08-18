@@ -49,7 +49,7 @@ function myAdds() {
 
 function addPage(addId) {
     localStorage.setItem('addId', JSON.stringify(addId));
-    window.open("/", "_blank");
+    window.open("/addPage", "_blank");
 }
 
 function dltadd(addId, add) {

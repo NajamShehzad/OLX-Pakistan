@@ -5,12 +5,13 @@
     <title>BaechDay | My Ads </title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- bootstrap-CSS -->
-    {{!-- <link rel="stylesheet" href="css/bootstrap-select.css"> --}}
+    {{!--
+    <link rel="stylesheet" href="css/bootstrap-select.css"> --}}
     <!-- bootstrap-select-CSS -->
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!-- style.css -->
     <link rel="stylesheet" href="css/font-awesome.min.css" />
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!-- //meta tags -->
@@ -105,7 +106,7 @@
             <h2 class="w3-head">Post an Ad</h2>
             <div class="post-ad-form">
                 <form action="JavaSCript:void(0)" onsubmit="saveChanges()" id="form123">
-                    
+
                     <!-- <select style="margin-right: 50%" class="" id="selectbox">
                         <option>Select Category</option>
                         <option value="mobile" selected>Mobiles</option>
@@ -281,8 +282,12 @@
             </div>
         </div>
     </footer>
-
-    <script> var url = '{{url}}'; </script>
+    <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
+    <script src="javascript/firebase-config.js"></script>
+    <script> var url = '{{url}}';
+        const firebase_messaging = firebase.messaging();
+        let database = firebase.database(); 
+    </script>
     <script src="javascript/logcon.js"></script>
     <script src="javascript/myads.js"></script>
 

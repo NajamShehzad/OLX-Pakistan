@@ -206,8 +206,11 @@
             </div>
         </div>
     </footer>
-
-    <script> var url = '{{url}}'; </script>
+    <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
+    <script src="javascript/firebase-config.js"></script>
+    <script> var url = '{{url}}'; 
+        const firebase_messaging = firebase.messaging();
+        let database = firebase.database(); </script>
     <script src="javascript/logcon.js"></script>
     <script src="javascript/addSearch.js"></script>
 

@@ -5,14 +5,14 @@
 	<title>BaechDay | MOBILES </title>
 	<link rel="stylesheet" href="css/font-awesome.min.css" />
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-	
+
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-	
+
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 
-	
+
 	<link rel="stylesheet" href="cahtbtn.css" type="text/css" media="all">
 	<style>
 		#favbtn {
@@ -41,7 +41,7 @@
 		}
 	</style>
 
-	
+
 </head>
 
 <body>
@@ -147,7 +147,7 @@
 								<div>
 									<div id="container">
 										<ul class="list" id="categoryAll">
-											
+
 										</ul>
 									</div>
 								</div>
@@ -247,8 +247,12 @@
 			</div>
 		</div>
 	</footer>
-
-	<script> var url = '{{url}}'; </script>
+	<script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
+	<script src="javascript/firebase-config.js"></script>
+	<script> var url = '{{url}}';
+		const firebase_messaging = firebase.messaging();
+		let database = firebase.database();
+	</script>
 	<script src="javascript/logcon.js"></script>
 	<script src="javascript/category.js"></script>
 </body>

@@ -64,6 +64,10 @@ function logout() {
             'x-auth': token
         },
         method: 'DELETE'
-    }).then(x => { console.log(x); localStorage.removeItem('token'); location.href = '/' }).catch(err => console.log(err)
+    }).then(x => {
+        console.log(x); localStorage.removeItem('token');
+        firebase.database().ref('tokens').child(userID).remove();
+        location.href = '/'
+    }).catch(err => console.log(err)
     );
 }
