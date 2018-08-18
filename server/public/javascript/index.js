@@ -1,10 +1,10 @@
-// if ('serviceWorker' in navigator) {
-//     window.addEventListener("load", x => {
-//         navigator.serviceWorker.register("sw.js")
-//             .then(res => console.log("Registerd"))
-//             .catch(err => console.log(err));
-//     })
-// }
+if ('serviceWorker' in navigator) {
+    window.addEventListener("load", x => {
+        navigator.serviceWorker.register("sw.js")
+            .then(res => console.log("Registerd"))
+            .catch(err => console.log(err));
+    })
+}
 const firebase_messaging = firebase.messaging();
 let database = firebase.database();
 var div = document.getElementById("mobile");
