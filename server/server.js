@@ -386,7 +386,7 @@ io.on('connection', () => {
 })
 //Chat Page For Seller and Buyers
 
-app.get('/chat', (req, res) => {
+app.get('/chatzone', (req, res) => {
     res.render('chatPage.hbs', { url })
 });
 app.post('/chat', authenticate, (req, res) => {
