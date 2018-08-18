@@ -369,20 +369,49 @@ app.post('/chatMsg', authenticate, (req, res) => {
     Chat.findById(_id).then(x => {
         var msg = { from: req.body.from, msg: req.body.msg };
         x.chat.push(msg)
-        console.log(x.chat);
+        // console.log(x.chat);
         var body = x;
         Chat.findByIdAndUpdate(_id, { $set: body }, { new: true }).then(x => {
-            io.emit(x._id,msg);
-            console.log(x)
+            io.emit(x._id, msg);
+            // console.log(x)
         });
 
 
     });
+    res.send({ code: 'Ok ki Report hae jee' })
 })
 io.on('connection', () => {
     console.log('Connected');
 
 })
+//Chat Page For Seller and Buyers
+
+app.get('/chat', (req, res) => {
+    res.render('chatPage.hbs', { url })
+});
+app.post('/chat', authenticate, (req, res) => {
+
+    console.log(req.user._id);
+    var _id = req.user._id;
+    var buyer;
+    var seller;
+    Chat.find({ buyerID: _id }).then(x => {
+        buyer = x
+        Chat.find({ sellerID: _id }).then(x => {
+            seller = x
+            res.send({ buyer, seller });
+        });
+    });
+
+
+});
+app.post('/getChat',authenticate,(req,res) => {
+    console.log(req.body);
+    var _id = req.body.chatID;
+    Chat.findById(_id).then(x => res.send(x));
+})
+
+//Chat Page For Seller and Buyers END
 
 
 //Some Serious Work On Chat END

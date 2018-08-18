@@ -37,6 +37,13 @@ if (token) {
                 }
             } catch (err) {
             }
+            try {
+                if (getList) {
+                    userData = user;
+                    getList();
+                }
+            } catch (err) {
+            }
         })
 
     // icon.innerHTML = `	<a href="JavaScript:void(0)" aria-expanded="false">

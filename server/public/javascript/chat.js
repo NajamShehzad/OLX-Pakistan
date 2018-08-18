@@ -7,36 +7,6 @@ var chatID;
 var from;
 var myId;
 
-// var database = firebase.database();
-// let friendkey;
-// let friendName;
-// let userName;
-
-
-
-// let userlist = database.ref("users");
-
-// userlist.on('child_added', function (data) {
-//     var datalist = data.val();
-//     if (userID == datalist.userID) {
-//         document.getElementById('name').innerHTML = datalist.fullname;
-//         userName = datalist.fullname
-//     }
-//     if (datalist.userID !== userID) {
-//         console.log(datalist.fullname, data.key);
-//         let row = generateRow(datalist.fullname, data.key);
-//         document.getElementById("userlist").innerHTML += row;
-
-//     }
-
-// });
-
-
-
-// function generateRow(fullname, key) {
-//     return `<a href="JavaScript:void(0)"  class="list-group-item list-group-item-action" onclick="showChat('${key}',this)">${fullname}<a/>`
-// }
-
 
 function sentmsg() {
     if (document.getElementById("message").value == "") {
@@ -54,7 +24,7 @@ function sentmsg() {
         },
         method: "POST",
         body: JSON.stringify(text)
-    })
+    }).then(x => x.json()).then(x => console.log(x.code));
 }
 
 var chatclose;
@@ -118,10 +88,30 @@ function showChat() {
                 method: "POST",
                 body: JSON.stringify(ChatItem)
             }).then(x => x.json()).then(x => {
-                console.log(x.chat)
-                chatID = x.chat[0]._id;
+                console.log(x)
+                chatID = x._id;
                 from = userData._id;
+                socket.on(chatID, (text) => {
+                    console.log('Connected Chat Live',text);
+                    if (text.from == myId) {
+                        document.getElementById("conversationArea").innerHTML += `<li class="message right appeared">
+                                <div class="text_wrapper">
+                                <div class="text">${text.msg}</div>
+                                </div>
+                                </li>`
+                    }
+                    else {
+                        document.getElementById("conversationArea").innerHTML += `<li class="message left appeared">
+                                <div class="text_wrapper">
+                                <div class="text">${text.msg}</div>
+                                </div>
+                                </li>`
+        
+                    }
+                });
+                
             });
+            return true;
         }
 
         console.log(x.chat[0].chat);
