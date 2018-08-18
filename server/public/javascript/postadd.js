@@ -42,37 +42,11 @@ function postadd() {
 
     console.log(addBody);
     console.log(token);
-    // fetch("http://localhost:8000/postAd",
-    //     {
-    //         headers: {
-    //             'Accept': 'application/json',
-    //             'Content-Type': 'application/json',
-    //             'x-auth': token
-    //         },
-    //         method: "POST",
-    //         body: JSON.stringify(addBody)
-    //     })
-    //     .then(function (res) {
-    //         console.log('hellow friends');
-    //         return res.json()
-    //     }).then(Add => {
-    //         console.log(Add);
-    //     })
-    //     .catch(function (err) { console.log('err', err) })
-    // return false;
 
 
 
 
 
-
-
-    // if (title == "" || year == "" || desc == "" || price == "") {
-    //     alert("Some Thing Is Missing");
-    //     return;
-    // }
-
-    // var number = Math.floor(100000 + Math.random() * 900000) + "add";
     var inputFile = document.querySelector('#upload').files[0];
     var fileref = storage.ref("image/" + inputFile.name);
     fileref.put(inputFile)
@@ -109,6 +83,7 @@ function postadd() {
                     return res.json()
                 }).then(Add => {
                     console.log(Add);
+                    location.href = '/ads'
                 })
                 .catch(function (err) {
                     console.log('err', err);
