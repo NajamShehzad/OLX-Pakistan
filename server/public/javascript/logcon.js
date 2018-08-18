@@ -66,7 +66,7 @@ function logout() {
         method: 'DELETE'
     }).then(x => {
         console.log(x); localStorage.removeItem('token');
-        firebase.database().ref('tokens').child(userID).remove();
+        firebase.database().ref('tokens').child(userData._id).remove();
         location.href = '/'
     }).catch(err => console.log(err)
     );
