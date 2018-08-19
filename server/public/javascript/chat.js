@@ -8,6 +8,24 @@ var from;
 var myId;
 
 
+function scrollToBottom() {
+    // Selectors
+    var messages = jQuery('#conversationArea');
+    var newMessage = messages.children('li:last-child')
+    // Heights
+    var clientHeight = messages.prop('clientHeight');
+    var scrollTop = messages.prop('scrollTop');
+    var scrollHeight = messages.prop('scrollHeight');
+    var newMessageHeight = newMessage.innerHeight();
+    var lastMessageHeight = newMessage.prev().innerHeight();
+
+    if (clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight) {
+        messages.scrollTop(scrollHeight);
+    }
+}
+
+
+
 function sentmsg() {
     if (document.getElementById("message").value == "") {
         alert("Write Some Thing");
@@ -119,6 +137,7 @@ function showChat() {
                                 </li>`
 
                     }
+                    scrollToBottom();
                 });
 
             });
@@ -144,6 +163,7 @@ function showChat() {
                         </li>`
 
             }
+            scrollToBottom();
 
         });
         socket.on(chatID, (text) => {
@@ -163,6 +183,7 @@ function showChat() {
                         </li>`
 
             }
+            scrollToBottom();
         });
 
     });

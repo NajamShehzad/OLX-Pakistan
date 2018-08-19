@@ -9,6 +9,22 @@ socket.on('connect', () => {
 });
 
 
+function scrollToBottom() {
+    // Selectors
+    var messages = jQuery('#conversationArea');
+    var newMessage = messages.children('li:last-child')
+    // Heights
+    var clientHeight = messages.prop('clientHeight');
+    var scrollTop = messages.prop('scrollTop');
+    var scrollHeight = messages.prop('scrollHeight');
+    var newMessageHeight = newMessage.innerHeight();
+    var lastMessageHeight = newMessage.prev().innerHeight();
+
+    if (clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight) {
+        messages.scrollTop(scrollHeight);
+    }
+}
+
 
 
 var sellerList;
@@ -33,6 +49,7 @@ function getList() {
             var row = `<a href="JavaScript:void(0)"  class="list-group-item list-group-item-action" onclick="showChat('${user._id}','${user.sellerID}','${user.sellerName}',this)">${user.sellerName}(${user.productName})<a/>`
             document.getElementById("userlist").innerHTML += row;
         });
+        scrollToBottom();
 
     });
 }
@@ -165,6 +182,7 @@ function showChat(chatID, friendId, friendInfo) {
                         </li>`
 
             }
+            scrollToBottom();
         });
 
 

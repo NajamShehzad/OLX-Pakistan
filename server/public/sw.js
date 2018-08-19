@@ -15,6 +15,7 @@ const staticAssets = [
   '/1-min.jpg',//change
   '/css/style.css',
   '/javascript/addPage.js',
+  '/javascript/jquery-3.1.0.min.js',
   '/javascript/addSearch.js',
   '/javascript/chat.js',
   '/javascript/chatpage.js',
