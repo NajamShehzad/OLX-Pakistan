@@ -23,6 +23,9 @@ if (token) {
             icon.innerHTML = `	<a href="JavaScript:void(0)" aria-expanded="false">
         ${user.name}</a> <input type="submit" onclick="logout()" value="Sign Out" /> `;
             var userLog = true;
+            userData = user;
+            if(window.location.pathname =='/ads'){
+            }
             try {
                 if (checkFav) {
                     userData = user;
