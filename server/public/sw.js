@@ -68,15 +68,20 @@ self.addEventListener('fetch', (ev) => {
   //console.log('Fetch from Service Worker ', ev);
   const req = ev.request;
   const url = new URL(req.url);
-  if (url.origin === location.origin) {
-    ev.respondWith(cacheFirst(req));
-  }
-  try {
-    return ev.respondWith(networkFirst(req));
+  return ev.respondWith(networkFirst(req));
+  //Ive change the aprach to network then cache beacuse im using the same domin for static and dynamic cache
 
-  } catch{
 
-  }
+
+
+  // if (url.origin === location.origin) {
+  //   ev.respondWith(cacheFirst(req));
+  // }
+  // try {
+
+  // } catch{
+
+  // }
 });
 
 async function cacheFirst(req) {
