@@ -6949,7 +6949,73 @@ label {
 	}
 }
 
+.post-w3layouts-ad{
+	border:none !important;
+	border-radius: 0 !important;
+	background: #fff;
+}
+#loginIcon a{
+	font-weight: bold;
+	padding: 10px 15px;
+}
+#loginIcon input{
+	padding: 7px 15px;
+	background: #fff;
+	border-radius: 0;
+	border:none;
+	font-weight:bold;
+}
+#sentbtn {
+	width: 20%;
+}
+#name, #name1{
+	border-radius: 0;   
+	font-weight: bold;
+}
+#inputfield {
+	width: 80%;
+	border-radius: 0;
+}
 
+@media only screen and (max-width: 600px) {
+	#favbtn {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	#favbtn {
+		display: none;
+	}
+
+}
+
+#listof {
+	display: flex
+}
+
+@media only screen and (max-width: 770px) {
+	#listof {
+		display: block;
+	}
+}
+
+#addChat {
+	width: 70%;
+	height: 80%;
+	text-align: center;
+	margin: auto auto;
+
+	position: fixed;
+	background-color: white;
+
+	bottom: 10;
+	z-index: 11111;
+	display: none;
+	border: 2px solid red;
+	left: 15%;
+	top: 10%
+}
 
 
 
